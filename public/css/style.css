@@ -73,7 +73,6 @@ html {
   background-size: cover;
   background-color: #ebebeb;
   background-position: center;
-  background-image: url('/images/tea.jpg');
 }
 .menu-item-card .item-content {
   flex: 1;

@@ -11,7 +11,11 @@
 |
 */
 
+use App\menu;
+
 Route::get('/', function () {
+
+	$items = menu::all();
     return view('welcome');
 });
 

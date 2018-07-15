@@ -138,92 +138,30 @@ font-family: 'Limelight', cursive;">ANSA</a>
             </div>
 
                <div class="row">
+                @foreach ($items as $item)
                 <div class="col-sm-6">
                 <div class="menu-item-card">
-                <div class="item-image"></div>
+                <div class="item-image" style="background-image: url({{$item->imagePath}});"></div>
                 <div class="item-content">
                     <div class="top-line">
                         <div class="item-name">
-                            Tea
+                            {{$item->name}}
                         </div>
                         <div class="item-dots">
                             <div class="dots"></div>
                         </div>
                         <div class="item-price">
-                            50
+                            {{$item->price}}
                         </div>
                     </div>
                     <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
+                       {{$item->description}}
                     </div>
                 </div>
             </div>
                 </div>
-                 <div class="col-sm-6">
-                    <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
-                    </div>
+                 @endforeach
                 </div>
-            </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-sm-6">
-                <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
-                    </div>
-                </div>
-            </div>
-                </div>
-                 <div class="col-sm-6">
-                    <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
-                    </div>
-                </div>
-            </div>
-                </div>
-               </div>
             <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
                 <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
                     <a href="user_menu.php" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s" style="margin-bottom: -80px;">For More..</a>
