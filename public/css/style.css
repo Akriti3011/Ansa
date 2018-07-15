@@ -13,6 +13,40 @@ html {
 }
 
 
+#order {
+    margin-bottom: 40px;
+    text-align: center;
+    margin-top: 40px;
+}
+
+#order .row {
+    margin: 0 4%;
+}
+#order .menu-item-card .item-content .item-description {
+  color: #999;
+  font-size: 16px;
+  margin-top: 2px;
+  font-weight: 200;
+  text-align: left;
+}
+#order .myOrder {
+    border-left: 1px solid #aaaaaa;
+    padding-left: 30px;
+    min-height: 85vh;
+}
+
+#order h3{
+  font-size: 22px;
+  color: #aaa;
+}
+.cart {
+    min-height: 35vh;
+}
+
+#order hr {
+    border: 0.5px solid #aaaaaa;
+}
+
 .menu-item-card {
   padding: 10px;
   display: flex;
@@ -70,6 +104,7 @@ html {
   color: #00a7ee;
   font-weight: bold;
   font-size: 18px;
+  font-family: "Open-Sans";
 }
 .menu-item-card .item-content .item-description {
   color: #999;

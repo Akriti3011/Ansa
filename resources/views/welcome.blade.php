@@ -40,8 +40,8 @@
           <div class="col-md-offset-2 col-md-8 col-sm-12">
               <h1 class="wow fadeInUp" data-wow-delay="0.6s"style="font-family: 'Handlee', cursive;
 font-family: 'Limelight', cursive;font-size: 100px;">ANSA</h1>
-              <p class="wow fadeInUp" data-wow-delay="1.0s">Presenting small and yummy Gujarati snacks to make every section of yur tongue feel yummmmm....!!  .</p>
-              <a href="user_menu.php" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s"style="font-family: 'Handlee', cursive;font-weight:600">Order Online</a>
+              <p class="wow fadeInUp" data-wow-delay="1.0s">Presenting small and yummy Gujarati snacks to make every section of your tongue feel yummmmm....!!  .</p>
+              <a href="/order" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s"style="font-family: 'Handlee', cursive;font-weight:600">Order Online</a>
           </div>
 
       </div>
@@ -67,7 +67,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
         <li><a href="#top" class="smoothScroll">Home</a></li>
           <li><a href="#feature" class="smoothScroll">About</a></li>
         <li><a href="#menu" class="smoothScroll">Menu</a></li>
-        <li><a href="#" class="smoothScroll">Order Online</a></li>
+        <li><a href="/order" class="smoothScroll">Order Online</a></li>
         <li><a href="#contact" class="smoothScroll">Contact</a></li>
           <li><a href="#cart"><span class="glyphicon glyphicon-shopping-cart"></span> </a></li>
       </ul>
