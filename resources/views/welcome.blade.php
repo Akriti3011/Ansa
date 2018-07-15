@@ -69,7 +69,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
         <li><a href="#menu" class="smoothScroll">Menu</a></li>
         <li><a href="/order" class="smoothScroll">Order Online</a></li>
         <li><a href="#contact" class="smoothScroll">Contact</a></li>
-          <li><a href="#cart"><span class="glyphicon glyphicon-shopping-cart"></span> </a></li>
+          
       </ul>
     </div>
 

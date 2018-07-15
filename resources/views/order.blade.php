@@ -54,7 +54,6 @@ font-family: 'Limelight', cursive;">ANSA</a>
         <li><a href="#menu" class="smoothScroll">Menu</a></li>
         <li><a href="/order" class="smoothScroll">Order Online</a></li>
         <li><a href="#contact" class="smoothScroll">Contact</a></li>
-          <li><a href="#cart"><span class="glyphicon glyphicon-shopping-cart"></span> </a></li>
       </ul>
     </div>
 
@@ -194,6 +193,52 @@ font-family: 'Limelight', cursive;">ANSA</a>
       </div>
     </div>
 
+  </div>
+</section>
+
+<footer>
+    <div class="container">
+        <div class="row">
+
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.3s">
+                <h3>About the owner</h3>
+                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod 
+                    tincidunt ut laoreet. Dolore magna aliquam erat volutpat ipsum.</p>
+              </div>  
+        
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.6s">
+                <h3>Contact Detail</h3>
+                <p>123 Delicious Street, San Francisco, CA 10110</p>
+                <p>010-020-0780</p>
+                <p>hello@company.com</p>
+              </div> 
+        
+              <div class="wow fadeInUp col-md-4 col-sm-4" data-wow-delay="1.9s">
+                <h3>Opening Hours</h3>
+                <strong>Monday - Friday</strong>
+                <p>11:00 AM - 10:00 PM</p>
+                <strong>Saturday - Sunday</strong>
+                <p>10:00 AM - 09:00 PM</p>
+              </div> 
+
+        </div>
+    </div>
+</footer>
+
+<!-- Copyright section -->
+<section id="copyright">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-md-8 col-sm-8 col-xs-8">
+        <p>Copyright © 2018<a class="designed-by" href="https://github.com/AnsaWebsite/Ansa" target="_blank"> Ansa</a></p>
+      </div>  
+
+      <div class="col-md-4 col-sm-4 text-right">
+        <a href="#home" class="fa fa-angle-up smoothScroll gototop"></a>
+      </div>
+
+    </div>
   </div>
 </section>
 <script src="js/jquery.js"></script>
