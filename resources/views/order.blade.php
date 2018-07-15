@@ -49,7 +49,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
     </div>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#top" class="smoothScroll">Home</a></li>
+        <li><a href="/" class="smoothScroll">Home</a></li>
           <li><a href="#feature" class="smoothScroll">About</a></li>
         <li><a href="#menu" class="smoothScroll">Menu</a></li>
         <li><a href="/order" class="smoothScroll">Order Online</a></li>
