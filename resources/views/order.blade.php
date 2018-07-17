@@ -121,9 +121,9 @@ font-family: 'Limelight', cursive;">ANSA</a>
             </div>
             <form action="" method="Post">
               
-              <button type="submit" class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
+              <a href="#myModal" data-toggle="modal"><button class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
                 Continue
-            </button>
+            </button></a>
             </form>
           </div>
         </div>
@@ -178,6 +178,42 @@ font-family: 'Limelight', cursive;">ANSA</a>
     </div>
   </div>
 </section>
+
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog ">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button id="close" type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h3 id="myModalLabel"> Please let us know!!</h3>
+        </div>
+      
+         <div class="col-md-12">
+               <input type="text" class="form-control" placeholder="Name" name="name" required>
+            </div>
+            <div class="col-md-12">
+               <input type="email" class="form-control" placeholder="Email" name="email" required>
+            </div>
+            <div class="col-md-12">
+               <input type="text" class="form-control" placeholder="Contact" name="contact" required>
+            </div>
+            <div class="col-md-12">
+               <input type="text" class="form-control" placeholder="Pincode" name="pincode" required>
+            </div>
+            <div class="col-md-12">
+               <input type="text" class="form-control" placeholder="Address" name="address" required>
+            </div>
+
+        <div class="modal-footer">
+          
+         
+            
+            <button class="btn modalbtn" type="submit">Order Now</button>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
