@@ -16,7 +16,7 @@ use App\menu;
 Route::get('/', function () {
 
 	$items = menu::all();
-    return view('welcome');
+    return view('welcome',compact('items'));
 });
 
 Auth::routes();
