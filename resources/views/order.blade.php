@@ -66,97 +66,34 @@ font-family: 'Limelight', cursive;">ANSA</a>
         <h3>OUR MENU</h3>
           <hr>
         <div class="row">
+          @foreach ($items as $item)
                 <div class="col-sm-12">
                 <div class="menu-item-card">
-                <div class="item-image"></div>
+                <div class="item-image" style="background-image: url({{$item->imagePath}});"></div>
                 <div class="item-content">
                     <div class="top-line">
                         <div class="item-name">
-                            Tea
+                            {{$item->name}}
                         </div>
                         <div class="item-dots">
                             <div class="dots"></div>
                         </div>
                         <div class="item-price">
-                            &#x20B9; 50
+                            &#x20B9; {{$item->price}}
                         </div>
                     </div>
                     <div class="col-sm-10 item-description">
-                        illed with whatever you like with whatever you want on the sid
+                        {{$item->description}}
                     </div>
                     <div class="col-sm-2">
-                       <button class="btn btn-sm btn-info" style="margin-top:5px; text-align: right;">ADD</button>
-                    </div>
-                  
-                </div>
-            </div>
-                </div>
-                 <div class="col-sm-12">
-                    <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
+                       <button class="btn btn-sm btn-primary" style="margin-top:5px; text-align: right;">ADD</button>
                     </div>
                 </div>
             </div>
                 </div>
-                <div class="clearfix"></div>
-                <div class="col-sm-12">
-                <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
-                    </div>
-                </div>
-            </div>
-                </div>
-                 <div class="col-sm-12">
-                    <div class="menu-item-card">
-                <div class="item-image"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            Tea
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            50
-                        </div>
-                    </div>
-                    <div class="item-description">
-                        illed with whatever you like with whatever you want on the sid
-                    </div>
-                </div>
-            </div>
-                </div>
+                 @endforeach
                </div>
-          </div>
+             </div>
       <div class="col-sm-4">
         <div class="myOrder">
           <h3>MY ORDER</h3>
@@ -166,7 +103,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
               
               <div class=" text-left">
               <div class="col-sm-2">
-                 <button class="btn btn-xs btn-danger" style="margin-top:5px;"><i class="fa fa-trash"></i></button>
+                 <button class="btn btn-xs btn-danger" style="margin-top:5px;"><i class="glyphicon glyphicon-trash"></i></button>
               </div>
               <div class="col-sm-7">
                 <h5>1 &ensp; &times; &ensp; sbcashbcs</h5>
@@ -185,7 +122,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
             <form action="" method="Post">
               
               <button type="submit" class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
-                Order Now
+                Continue
             </button>
             </form>
           </div>

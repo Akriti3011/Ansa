@@ -151,7 +151,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
                             <div class="dots"></div>
                         </div>
                         <div class="item-price">
-                            {{$item->price}}
+                            &#x20B9; {{$item->price}}
                         </div>
                     </div>
                     <div class="item-description">
@@ -162,12 +162,6 @@ font-family: 'Limelight', cursive;">ANSA</a>
                 </div>
                  @endforeach
                 </div>
-            <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
-                <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
-                    <a href="user_menu.php" class="wow fadeInUp btn btn-default hvr-bounce-to-top smoothScroll" data-wow-delay="1.3s" style="margin-bottom: -80px;">For More..</a>
-                </div>
-            </div>
-
 
 
         </div>

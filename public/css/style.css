@@ -100,10 +100,10 @@ html {
   border-top: dotted 1px #ccc;
 }
 .menu-item-card .item-content .top-line .item-price {
-  color: #00a7ee;
+  color: #757575;
   font-weight: bold;
   font-size: 18px;
-  font-family: "Open-Sans";
+  font-family:'Arial';
 }
 .menu-item-card .item-content .item-description {
   color: #999;

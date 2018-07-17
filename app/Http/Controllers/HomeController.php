@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\menu;
 class HomeController extends Controller
 {
     /**
@@ -28,6 +28,8 @@ class HomeController extends Controller
 
     public function order()
     {
-        return view('order');
+        $items = menu::all();
+        return view('order',compact('items'));
     }
 }
+
