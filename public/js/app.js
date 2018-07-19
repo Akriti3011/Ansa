@@ -10251,9 +10251,8 @@ module.exports = getHostComponentFromComposite;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
-var Menu = function Menu(_ref, _ref2) {
+var Menu = function Menu(_ref) {
     var menu = _ref.menu;
-    var isOrder = _ref2.isOrder;
 
     console.log(isOrder);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -10290,23 +10289,10 @@ var Menu = function Menu(_ref, _ref2) {
                         menu.price
                     )
                 ),
-                isOrder ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "item-description" },
                     menu.description
-                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "div",
-                    null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "div",
-                        { className: "col-sm-10 item-description" },
-                        menu.description
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                        "button",
-                        { className: "col-sm-2 addbtn btn-sm btn-primary" },
-                        "ADD"
-                    )
                 )
             )
         )
@@ -41243,8 +41229,12 @@ var Main = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
 
         _this.state = {
+<<<<<<< HEAD
             menu: [],
             isOrder: ''
+=======
+            menu: []
+>>>>>>> 03a520d04138877ebcdec81c06b5bd38d69062e0
 
         };
         return _this;
@@ -41273,8 +41263,13 @@ var Main = function (_Component) {
                 this.state.menu.map(function (menu) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
+<<<<<<< HEAD
                         { className: 'col-md-6' },
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: 'false' })
+=======
+                        { className: 'col-md-6', id: menu.id },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu })
+>>>>>>> 03a520d04138877ebcdec81c06b5bd38d69062e0
                     );
                 })
             );
@@ -53842,8 +53837,13 @@ var Order = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
     _this.state = {
+<<<<<<< HEAD
       menu: [],
       isOrder: ''
+=======
+      menu: []
+
+>>>>>>> 03a520d04138877ebcdec81c06b5bd38d69062e0
     };
     return _this;
   }
@@ -53871,8 +53871,21 @@ var Order = function (_Component) {
         this.state.menu.map(function (menu) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
-            { className: 'col-md-12' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: true })
+            null,
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'col-sm-10' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, id: menu.id })
+            ),
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                'button',
+                { className: 'addbtn btn-sm btn-primary' },
+                'ADD'
+              )
+            )
           );
         })
       );
