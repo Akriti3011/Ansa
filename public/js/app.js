@@ -10255,7 +10255,7 @@ var Menu = function Menu(_ref, _ref2) {
     var menu = _ref.menu;
     var isOrder = _ref2.isOrder;
 
-
+    console.log(isOrder);
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         "div",
         null,
@@ -41244,7 +41244,7 @@ var Main = function (_Component) {
 
         _this.state = {
             menu: [],
-            isOrder: false
+            isOrder: ''
 
         };
         return _this;
@@ -41274,7 +41274,7 @@ var Main = function (_Component) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'col-md-6' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: false })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: 'false' })
                     );
                 })
             );
@@ -53843,7 +53843,7 @@ var Order = function (_Component) {
 
     _this.state = {
       menu: [],
-      isOrder: true
+      isOrder: ''
     };
     return _this;
   }

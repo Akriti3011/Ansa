@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
   const Menu = ({menu}, {isOrder}) => {
-
+    
   return(  
     <div>
     <div className="menu-item-card">
