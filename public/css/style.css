@@ -14,7 +14,9 @@ html {
 
 .addbtn{
   margin-top:5px;
-   text-align: right;
+   text-align: center;
+   font-size: 32px;
+   font-weight: 600px;
 }
 #order {
     margin-bottom: 40px;

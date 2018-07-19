@@ -10251,8 +10251,9 @@ module.exports = getHostComponentFromComposite;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 
 
-var Menu = function Menu(_ref) {
+var Menu = function Menu(_ref, _ref2) {
     var menu = _ref.menu;
+    var isOrder = _ref2.isOrder;
 
 
     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -10289,10 +10290,23 @@ var Menu = function Menu(_ref) {
                         menu.price
                     )
                 ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                isOrder ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     "div",
                     { className: "item-description" },
                     menu.description
+                ) : __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "div",
+                    null,
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "div",
+                        { className: "col-sm-10 item-description" },
+                        menu.description
+                    ),
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        "button",
+                        { className: "col-sm-2 addbtn btn-sm btn-primary" },
+                        "ADD"
+                    )
                 )
             )
         )
@@ -41229,7 +41243,8 @@ var Main = function (_Component) {
         var _this = _possibleConstructorReturn(this, (Main.__proto__ || Object.getPrototypeOf(Main)).call(this));
 
         _this.state = {
-            menu: []
+            menu: [],
+            isOrder: false
 
         };
         return _this;
@@ -41259,7 +41274,7 @@ var Main = function (_Component) {
                     return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'col-md-6' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: false })
                     );
                 })
             );
@@ -53827,7 +53842,8 @@ var Order = function (_Component) {
     var _this = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
     _this.state = {
-      menu: []
+      menu: [],
+      isOrder: true
     };
     return _this;
   }
@@ -53856,7 +53872,7 @@ var Order = function (_Component) {
           return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             'div',
             { className: 'col-md-12' },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu })
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, isOrder: true })
           );
         })
       );

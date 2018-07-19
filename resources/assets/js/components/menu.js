@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-  const Menu = ({menu}) => {
+  const Menu = ({menu}, {isOrder}) => {
 
   return(  
     <div>
@@ -18,9 +18,18 @@ import React, { Component } from 'react';
                             &#x20B9; {menu.price}
                         </div>
                     </div>
-                    <div className="item-description">
+                    {isOrder ? (
+        <div className="item-description">
                        {menu.description}
                     </div>
+      ) : (
+                    <div>
+                       <div className="col-sm-10 item-description">{menu.description}</div>
+                       <button className="col-sm-2 addbtn btn-sm btn-primary">ADD</button>
+                    </div>
+                   
+      )}
+                    
                 </div>
             </div>
             </div>

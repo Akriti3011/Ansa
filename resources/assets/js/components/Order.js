@@ -11,6 +11,7 @@ class Order extends Component {
     //Initialize the state in the constructor
     this.state = {
         menu: [],
+        isOrder:true,
     }
   }
   
@@ -36,7 +37,7 @@ class Order extends Component {
               <div className="row">
               {this.state.menu.map(menu => (
                 <div className="col-md-12">
-                  <Menu menu={menu}/>
+                  <Menu menu={menu} isOrder={true}/>
                 </div>
                 
               ))}   
