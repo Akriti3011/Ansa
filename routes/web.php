@@ -11,16 +11,10 @@
 |
 */
 
-use App\menu;
-
 Route::get('/', function () {
-
-	$items = menu::all();
-    return view('welcome',compact('items'));
+    return view('welcome');
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/order', 'HomeController@order');
+Route::get('/order', function () {
+    return view('order');
+});

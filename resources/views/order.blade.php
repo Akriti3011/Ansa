@@ -31,6 +31,7 @@
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Handlee|Limelight" rel="stylesheet">
+    <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
     </head>
@@ -65,34 +66,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
       <div class="col-sm-8">
         <h3>OUR MENU</h3>
           <hr>
-        <div class="row">
-          @foreach ($items as $item)
-                <div class="col-sm-12">
-                <div class="menu-item-card">
-                <div class="item-image" style="background-image: url({{$item->imagePath}});"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            {{$item->name}}
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            &#x20B9; {{$item->price}}
-                        </div>
-                    </div>
-                    <div class="col-sm-10 item-description">
-                        {{$item->description}}
-                    </div>
-                    <div class="col-sm-2">
-                       <button class="btn btn-sm btn-primary" style="margin-top:5px; text-align: right;">ADD</button>
-                    </div>
-                </div>
-            </div>
-                </div>
-                 @endforeach
-               </div>
+       <div id="pick"></div>
              </div>
       <div class="col-sm-4">
         <div class="myOrder">
@@ -121,7 +95,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
             </div>
             <form action="" method="Post">
               
-              <a href="#myModal" data-toggle="modal"><button class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
+              <a style="text-decoration: none;" href="#myModal" data-toggle="modal"><button class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
                 Continue
             </button></a>
             </form>
@@ -231,6 +205,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
 <script src="js/jquery.parallax.js"></script>
 <script src="js/smoothscroll.js"></script>
 <script src="js/wow.min.js"></script>
+<script src="{{mix('js/app.js')}}" ></script>
 
 <script src="js/custom.js"></script>
     </body>

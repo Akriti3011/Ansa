@@ -1,7 +1,7 @@
 body {
     font-family: 'Source Sans Pro', sans-serif;
     font-weight: 300;
-	}
+  }
 
 html,body {
   width: 100%;
@@ -12,7 +12,10 @@ html {
   font-size: 100%;
 }
 
-
+.addbtn{
+  margin-top:5px;
+   text-align: right;
+}
 #order {
     margin-bottom: 40px;
     text-align: center;
@@ -65,14 +68,12 @@ html {
 .menu-item-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
-.menu-item-card .item-image {
+.menu-item-card .item-image img {
   width: 70px;
   height: 70px;
   margin-right: 10px;
   border-radius: 2px;
-  background-size: cover;
-  background-color: #ebebeb;
-  background-position: center;
+  
 }
 .menu-item-card .item-content {
   flex: 1;

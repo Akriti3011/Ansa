@@ -4,10 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
         <title>Ansa</title>
-
-        <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
 
@@ -23,16 +20,16 @@
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}">
 
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Handlee|Limelight" rel="stylesheet">
-
-        <!-- Styles -->
+        <link href="{{mix('css/app.css')}}" rel="stylesheet" type="text/css">
     </head>
-    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
-        <section id="home" class="parallax-section">
+
+    <body>
+    <section id="home" class="parallax-section">
   <div class="gradient-overlay"></div>
     <div class="container">
       <div class="row">
@@ -47,9 +44,6 @@ font-family: 'Limelight', cursive;font-size: 100px;">ANSA</h1>
       </div>
     </div>
 </section>
-
-
-<!-- Navigation section -->
 <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
 
@@ -75,9 +69,6 @@ font-family: 'Limelight', cursive;">ANSA</a>
 
   </div>
 </div>
-
-
-<!--About section-->
 <section id="feature" class="parallax-section">
   <div class="container">
     <div class="row">
@@ -125,54 +116,19 @@ font-family: 'Limelight', cursive;">ANSA</a>
   </div>
 </section>
 
-
-<!--Menu section -->
-<section id="menu" class="parallax-section ">
-    <div class="container">
-        <div class="row" style="margin-top: -20px;">
-
-            <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
+<section id="menu" class="parallax-section " style="background-color: #fff">
+  <div class="container">
+    <div class="row" style="margin-top: -20px;">
+               <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
                 <div class="wow fadeInUp section-title" data-wow-delay="0.3s">
                     <h2>Food Menu</h2>
                 </div>
             </div>
-
-               <div class="row">
-                @foreach ($items as $item)
-                <div class="col-sm-6">
-                <div class="menu-item-card">
-                <div class="item-image" style="background-image: url({{$item->imagePath}});"></div>
-                <div class="item-content">
-                    <div class="top-line">
-                        <div class="item-name">
-                            {{$item->name}}
-                        </div>
-                        <div class="item-dots">
-                            <div class="dots"></div>
-                        </div>
-                        <div class="item-price">
-                            &#x20B9; {{$item->price}}
-                        </div>
-                    </div>
-                    <div class="item-description">
-                       {{$item->description}}
-                    </div>
-                </div>
-            </div>
-                </div>
-                 @endforeach
-                </div>
-
-
-        </div>
-
-    </div>
-    </div>
-</section>
-
-
-<!--Contact section -->
-<section id="contact" class="parallax-section">
+        <div id="root"></div>
+      </div>
+      </div>
+      </section>
+        <section id="contact" class="parallax-section">
   <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -253,9 +209,8 @@ font-family: 'Limelight', cursive;">ANSA</a>
     </div>
   </div>
 </section>
-
-<!-- javscript js -->
-<script src="js/jquery.js"></script>
+        <script src="{{mix('js/app.js')}}" ></script>
+        <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 
 <script src="js/jquery.magnific-popup.min.js"></script>
