@@ -11,6 +11,7 @@ class Order extends Component {
     //Initialize the state in the constructor
     this.state = {
         menu: [],
+        added:[],
         
     }
   }
@@ -27,6 +28,13 @@ class Order extends Component {
         });
         
   }
+
+  addItem(menu) {
+    var added = [];
+    added.push(menu);
+    localStorage.setItem('added', added.concat(added));
+    console.log(added);
+}
  
  
    
@@ -42,7 +50,8 @@ class Order extends Component {
                   <Menu menu={menu} id={menu.id}/>
                 </div>
                 <div className="col-sm-2">
-                <button className="addbtn btn-sm btn-primary">ADD</button>
+                <button className="addbtn btn-sm btn-primary" onClick={
+                () =>this.addItem(menu)}>ADD</button>
                 </div>
                 </div>
               ))}   
