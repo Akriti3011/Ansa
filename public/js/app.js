@@ -53850,10 +53850,13 @@ var Order = function (_Component) {
   }, {
     key: 'addItem',
     value: function addItem(menu) {
-      var added = [];
+      var added = this.state.added.slice(0);
       added.push(menu);
-      localStorage.setItem('added', added);
-      console.log(localStorage.setItem(added));
+      this.setState({
+        added: added
+      });
+      //localStorage.setItem('added', added.concat(added));
+      console.log(added);
     }
   }, {
     key: 'render',
