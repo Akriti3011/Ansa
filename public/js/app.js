@@ -53852,8 +53852,8 @@ var Order = function (_Component) {
     value: function addItem(menu) {
       var added = [];
       added.push(menu);
-      localStorage.setItem('added', added.concat(added));
-      console.log(added);
+      localStorage.setItem('added', added);
+      console.log(localStorage.setItem(added));
     }
   }, {
     key: 'render',
