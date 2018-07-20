@@ -53850,12 +53850,27 @@ var Order = function (_Component) {
   }, {
     key: 'addItem',
     value: function addItem(menu) {
-      var added = this.state.added.slice(0);
-      added.push(menu);
-      this.setState({
-        added: added
-      });
+      //   const added = this.state.added.slice(0);
+      //   added.push(menu);
+      //   this.setState({
+      //   added: added,
+      // });
       //localStorage.setItem('added', added.concat(added));
+      // console.log(menu.id);
+      //let cart;
+
+      var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      var obj = {};
+      obj = added.find(function (obj) {
+        return obj.id == menu.id;
+      });
+      console.log(obj);
+      if (obj == {}) {
+        var temp = { "id": menu.id, "name": menu.name, "amount": menu.price, "quantity": "1" };
+        added.push(temp);
+      } else {}
+
+      localStorage.setItem('cart', JSON.stringify(added));
       console.log(added);
     }
   }, {
