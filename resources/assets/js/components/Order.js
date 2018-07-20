@@ -30,9 +30,12 @@ class Order extends Component {
   }
 
   addItem(menu) {
-    var added = [];
+    const added = this.state.added.slice(0);
     added.push(menu);
-    localStorage.setItem('added', added.concat(added));
+    this.setState({
+    added: added,
+  });
+    //localStorage.setItem('added', added.concat(added));
     console.log(added);
 }
  
