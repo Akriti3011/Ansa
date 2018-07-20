@@ -38,18 +38,25 @@ class Order extends Component {
     //localStorage.setItem('added', added.concat(added));
     // console.log(menu.id);
     //let cart;
-    
+    //localStorage.clear();
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-    var obj = {};
-    obj = added.find(function(obj){
+    
+    let index = null;
+
+    var obj = added.find(function(obj){
       return obj.id==menu.id;
     });
-    console.log(obj);
-    if(obj=={}){
-      var temp ={"id":menu.id,"name":menu.name,"amount":menu.price, "quantity":"1"};
-      added.push(temp);
+
+    index = added.findIndex((arr => arr.id == menu.id));
+    //console.log(index);
+     if(obj){
+      added[index].quantity = added[index].quantity + 1;
+      added[index].amount = added[index].quantity * menu.price ; 
     }
     else{
+      
+      var temp ={"id":menu.id,"name":menu.name,"amount":menu.price, "quantity":1};
+      added.push(temp);
      
     }
  

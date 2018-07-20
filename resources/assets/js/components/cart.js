@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-  const Cart = ({menu}) => {
+  const Cart = ({added}) => {
 
 
   return(  
@@ -17,10 +17,10 @@ import React, { Component } from 'react';
                  <button className="btn btn-xs btn-danger" ><i className="glyphicon glyphicon-trash"></i></button>
               </div>
               <div className="col-sm-7">
-                <h5>1 &ensp; &times; &ensp; {menu.name}</h5>
+                <h5>1 &ensp; &times; &ensp; {added.name}</h5>
               </div>
               <div className="col-sm-3">
-                <h5>&#x20B9; {menu.price} </h5>
+                <h5>&#x20B9; {added.price} </h5>
               </div>
               </div>
                
