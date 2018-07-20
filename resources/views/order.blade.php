@@ -61,50 +61,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
   </div>
 </div>
       <section id="order">
-  <div class="container">
-    <div class="row">
-      <div class="col-sm-8">
-        <h3>OUR MENU</h3>
-          <hr>
-       <div id="pick"></div>
-             </div>
-      <div class="col-sm-4">
-        <div class="myOrder">
-          <h3>MY ORDER</h3>
-          <hr>
-          <div class="row">
-            <div class="cart">
-              
-              <div class=" text-left">
-              <div class="col-sm-2">
-                 <button class="btn btn-xs btn-danger" style="margin-top:5px;"><i class="glyphicon glyphicon-trash"></i></button>
-              </div>
-              <div class="col-sm-7">
-                <h5>1 &ensp; &times; &ensp; sbcashbcs</h5>
-              </div>
-              <div class="col-sm-3">
-                <h5>&#x20B9; 850 </h5>
-              </div>
-              </div>
-               
-              
-            </div>
-            <div class="total">
-              <hr style="margin: 0 -10px;">
-              <h4 style="letter-spacing:0; font-size:17px; text-transform: capitalize; margin-top: 20px;">Order Total &ensp;&ensp;&ensp;&ensp; &ensp; &ensp;&ensp; &#x20B9; 512</h4>
-            </div>
-            <form action="" method="Post">
-              
-              <a style="text-decoration: none;" href="#myModal" data-toggle="modal"><button class="btn btn-success" style="margin: 20px 40px; padding: 7px 40px;">
-                Continue
-            </button></a>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  <div id="pick"></div>
 </section>
 
 <footer>

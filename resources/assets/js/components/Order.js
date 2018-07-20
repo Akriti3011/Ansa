@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './menu';
+import Cart from './cart';
  
 /* Main Component */
 class Order extends Component {
@@ -25,6 +26,7 @@ class Order extends Component {
         .then(menu => {
             //Fetched product is stored in the state
             this.setState({ menu });
+            //console.log(menu);
         });
         
   }
@@ -64,32 +66,71 @@ class Order extends Component {
     
     localStorage.setItem('cart', JSON.stringify(added));
     console.log(added);
+    this.setState({
+    added: added,
+  });
 }
  
+// delItem(update){
+//    let added = localStorage.getItem('cart');
+//    let index = null;
+//    index = added.findIndex((arr => arr.id == update.id));
+
+//    added.remove(index);
+//    console.log(added);
+
+
+// } 
  
    
   render() {
     
     return (
             
-
-              <div className="row">
+      <div className="container">
+        <div className="row">
+          <div className="col-sm-8">
+            <h3>OUR MENU</h3>
+            <hr></hr>
               {this.state.menu.map(menu => (
                 <div>
-                <div className="col-sm-10">
-                  <Menu menu={menu} id={menu.id}/>
+                  <div className="row">
+                    <div className="col-sm-10">
+                      <Menu menu={menu} id={menu.id}/>
+                    </div>
+                    <div className="col-sm-2">
+                      <button className="addbtn btn btn-sm btn-primary" onClick={
+                      () =>this.addItem(menu)}>ADD</button>
+                    </div>
+                  </div>
                 </div>
-                <div className="col-sm-2">
-                <button className="addbtn btn-sm btn-primary" onClick={
-                () =>this.addItem(menu)}>ADD</button>
-                </div>
-                </div>
-              ))}   
-              </div>
+              ))} 
+          </div>
+          <div className="col-sm-4">
+                <div className="myOrder">
+                  <h3>MY ORDER</h3>
+                  <hr></hr>
+                  <div className="cart">
+                    {this.state.added.map(added => (
+                      <div>
+                        <Cart added={added} />
+                      </div>
+                    ))}
+                  </div>  
+                   <hr id="hr"></hr>
+                  <div className="total">
+                    <div className="col-sm-6">Order Total</div>
+                    <div className="col-sm-6"> <b>&#x20B9; 512</b></div>
+                  </div>
+
+                  <a href="#myModal" data-toggle="modal"><button className="conbtn btn btn-success">
+                  Continue
+                  </button></a>
+                </div>  
+          </div>
+        </div>
+      </div>
     
-              
-           
-       
     );
   }
 }

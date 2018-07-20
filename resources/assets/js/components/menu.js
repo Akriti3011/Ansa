@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 
-  const Menu = ({menu}) => {
+  class Menu extends Component {
 
-
+render(){
+    var menu = this.props.menu;
   return(  
     <div>
     <div className="menu-item-card">
@@ -28,6 +29,7 @@ import React, { Component } from 'react';
             </div>
             </div>
   )
+}
 }
 
 export default Menu ;

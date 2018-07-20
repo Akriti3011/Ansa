@@ -12,7 +12,23 @@ html {
   font-size: 100%;
 }
 
-
+.delbtn{
+  margin-top: 5px;
+}
+#hr{
+  margin: 0 -10px;
+}
+.conbtn{
+  margin: 20px 40px;
+  padding: 7px 40px;
+}
+.total{ 
+  letter-spacing:0;
+   font-size:17px;
+    text-transform: capitalize;
+     margin-top: 20px;
+}
+}
 .addbtn{
 
    text-align: center;
@@ -227,6 +243,12 @@ h4 {
   font-weight: bold;
   letter-spacing: 3px;
   text-transform: uppercase;
+  font-weight: 400;
+}
+
+h5{
+  font-size: 12px;
+  color: #757575;
   font-weight: 400;
 }
 
