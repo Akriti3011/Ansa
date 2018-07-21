@@ -10,5 +10,5 @@ Ansa is a web application for a restaurant to order food stuffs online. It a cli
 - User friendly
 
 ## Contributors
-- **Akriti Bhadoriya[https://github.com/Akriti3011]**
-- Deepak Goyal
+- [Akriti Bhadoriya](https://github.com/Akriti3011)
+- [Deepak Goyal](https://github.com/DeepakGoyal468)
