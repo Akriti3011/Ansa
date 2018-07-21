@@ -16,10 +16,11 @@ class Order extends Component {
         
     }
     this.delete = this.delete.bind(this);
+    this.edit = this.edit.bind(this);
   }
   
   componentDidMount() {
-    let added = JSON.parse(localStorage.getItem('cart'));
+    let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     
     /* fetch API in action */
     fetch('/api/menu')
@@ -80,8 +81,33 @@ delete(update){
    var obj = added.findIndex(function(obj){
       return obj.id==update.id;
     });
-    
+   
    added.splice(obj, 1); 
+   localStorage.setItem('cart', JSON.stringify(added));
+   console.log(this.state.menu);
+   this.setState({
+    added: added,
+  });
+  
+} 
+
+edit(update){
+   let added = JSON.parse(localStorage.getItem('cart'));
+   var obj = added.findIndex(function(obj){
+      return obj.id==update.id;
+    });
+   let price = null;
+
+  if(added[obj].quantity>1){
+     price = added[obj].amount / added[obj].quantity;
+     added[obj].quantity = added[obj].quantity-1;
+     added[obj].amount = added[obj].quantity * price;
+   }
+
+  else{
+      added.splice(obj, 1);
+   }
+   
    localStorage.setItem('cart', JSON.stringify(added));
    console.log(this.state.menu);
    this.setState({
@@ -118,13 +144,15 @@ delete(update){
                 <div className="myOrder">
                   <h3>MY ORDER</h3>
                   <hr></hr>
+                  {this.state.added ? 
                   <div className="cart">
                     {this.state.added.map(added => (
                       <div>
-                        <Cart added={added} delItem={this.delete} />
+                        <Cart added={added} delItem={this.delete} editItem={this.edit} />
                       </div>
                     ))}
-                  </div>  
+                  </div>
+                  : null }  
                    <hr id="hr"></hr>
                   <div className="total">
                     <div className="col-sm-6">Order Total</div>
