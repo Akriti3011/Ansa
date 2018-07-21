@@ -53851,7 +53851,8 @@ var Order = function (_Component) {
 
     _this.state = {
       menu: [],
-      added: []
+      added: [],
+      total: 0
 
     };
     _this.delete = _this.delete.bind(_this);
@@ -53865,6 +53866,11 @@ var Order = function (_Component) {
       var _this2 = this;
 
       var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+      var total = 0;
+      for (var i = 0; i < added.length; i++) {
+        total = total + parseInt(added[i].amount);
+      }
+      //console.log(total);
 
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
@@ -53875,8 +53881,10 @@ var Order = function (_Component) {
         //console.log(menu);
       });
       this.setState({
-        added: added
+        added: added,
+        total: total
       });
+      //console.log(this.total);
     }
   }, {
     key: 'addItem',
@@ -53901,10 +53909,16 @@ var Order = function (_Component) {
         var temp = { "id": menu.id, "name": menu.name, "amount": menu.price, "quantity": 1 };
         added.push(temp);
       }
+      var total = 0;
+      for (var i = 0; i < added.length; i++) {
+        total = total + parseInt(added[i].amount);
+      }
 
       localStorage.setItem('cart', JSON.stringify(added));
+      localStorage.setItem('total', total);
       this.setState({
-        added: added
+        added: added,
+        total: total
       });
     }
   }, {
@@ -53914,11 +53928,22 @@ var Order = function (_Component) {
       var obj = added.findIndex(function (obj) {
         return obj.id == update.id;
       });
+      var price = null;
 
-      added.splice(obj, 1);
+      price = added[obj].amount / added[obj].quantity;
+      added[obj].quantity = added[obj].quantity + 1;
+      added[obj].amount = added[obj].quantity * price;
+
       localStorage.setItem('cart', JSON.stringify(added));
+      localStorage.setItem('total', total);
+      var total = 0;
+      for (var i = 0; i < added.length; i++) {
+        total = total + parseInt(added[i].amount);
+      }
+
       this.setState({
-        added: added
+        added: added,
+        total: total
       });
     }
   }, {
@@ -53939,8 +53964,15 @@ var Order = function (_Component) {
       }
 
       localStorage.setItem('cart', JSON.stringify(added));
+      localStorage.setItem('total', total);
+      var total = 0;
+      for (var i = 0; i < added.length; i++) {
+        total = total + parseInt(added[i].amount);
+      }
+
       this.setState({
-        added: added
+        added: added,
+        total: total
       });
     }
   }, {
@@ -53960,7 +53992,7 @@ var Order = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               'h3',
               null,
-              'OUR MENU'
+              'OUR MENU '
             ),
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
             this.state.menu.map(function (menu) {
@@ -54019,17 +54051,18 @@ var Order = function (_Component) {
                 { className: 'total' },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'col-sm-6' },
+                  { className: 'col-sm-6 text-left' },
                   'Order Total'
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                   'div',
-                  { className: 'col-sm-6' },
+                  { className: 'col-sm-6 text-right' },
                   ' ',
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'b',
                     null,
-                    '\u20B9 512'
+                    '\u20B9 ',
+                    this.state.total
                   )
                 )
               ),
@@ -54096,43 +54129,46 @@ var Cart = function (_Component) {
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
           "div",
-          { className: " text-left" },
+          { className: "row" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            { className: "col-sm-2" },
+            { className: "col-sm-1 noPadding" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "button",
+              "a",
               { onClick: function onClick() {
                   return _this2.props.editItem(added);
-                }, className: "delbtn btn-xs btn-danger" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-minus" })
-            )
-          ),
-          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "col-sm-2" },
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "button",
-              { onClick: function onClick() {
-                  return _this2.props.delItem(added);
-                }, className: "delbtn btn-xs btn-danger" },
+                }, className: "delbtn" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-trash" })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            { className: "col-sm-5" },
+            { className: "col-sm-1 noPadding" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("input", { className: "qty", value: added.quantity, disabled: true })
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col-sm-1 noPadding" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "a",
+              { onClick: function onClick() {
+                  return _this2.props.delItem(added);
+                }, className: "plusbtn" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-plus" })
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col-sm-6 text-left" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "h5",
               null,
-              added.quantity,
-              " \u2002 \xD7 ",
               added.name
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            { className: "col-sm-3" },
+            { className: "col-sm-3 text-left" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "h5",
               null,

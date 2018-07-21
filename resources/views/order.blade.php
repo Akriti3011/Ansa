@@ -35,7 +35,7 @@
 
         <!-- Styles -->
     </head>
-    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+    <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50" style="background-color: #fff;">
       <div class="navbar navbar-default navbar-static-top" role="navigation">
   <div class="container">
 
@@ -60,7 +60,7 @@ font-family: 'Limelight', cursive;">ANSA</a>
 
   </div>
 </div>
-      <section id="order">
+      <section id="order" style="background-color: #fff;">
   <div id="pick"></div>
 </section>
 

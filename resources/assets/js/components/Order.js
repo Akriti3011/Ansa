@@ -13,6 +13,7 @@ class Order extends Component {
     this.state = {
         menu: [],
         added:[],
+        total:0,
         
     }
     this.delete = this.delete.bind(this);
@@ -21,6 +22,11 @@ class Order extends Component {
   
   componentDidMount() {
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
+    let total = 0;
+    for(var i=0; i<added.length;i++){
+      total = total + parseInt(added[i].amount); 
+    }
+    //console.log(total);
     
     /* fetch API in action */
     fetch('/api/menu')
@@ -34,7 +40,9 @@ class Order extends Component {
         });
        this.setState({
     added: added,
+    total:total,
   }); 
+//console.log(this.total);
   }
 
   addItem(menu) {
@@ -58,10 +66,16 @@ class Order extends Component {
       added.push(temp);
      
     }
-
+    let total = 0;
+    for(var i=0; i<added.length;i++){
+      total = total + parseInt(added[i].amount); 
+    }
+    
     localStorage.setItem('cart', JSON.stringify(added));
+    localStorage.setItem('total', total);
     this.setState({
     added: added,
+    total:total,
   });
 }
  
@@ -70,12 +84,24 @@ delete(update){
    var obj = added.findIndex(function(obj){
       return obj.id==update.id;
     });
-   
-   added.splice(obj, 1); 
+   let price = null;
+
+     price = added[obj].amount / added[obj].quantity;
+     added[obj].quantity = added[obj].quantity+1;
+     added[obj].amount = added[obj].quantity * price;
+
    localStorage.setItem('cart', JSON.stringify(added));
+localStorage.setItem('total', total);
+   let total = 0;
+    for(var i=0; i<added.length;i++){
+      total = total + parseInt(added[i].amount); 
+    }
+    
    this.setState({
     added: added,
+    total:total,
   });
+  
   
 } 
 
@@ -97,8 +123,15 @@ edit(update){
    }
    
    localStorage.setItem('cart', JSON.stringify(added));
+localStorage.setItem('total', total);
+   let total = 0;
+    for(var i=0; i<added.length;i++){
+      total = total + parseInt(added[i].amount); 
+    }
+    
    this.setState({
     added: added,
+    total:total,
   });
   
 } 
@@ -111,7 +144,7 @@ edit(update){
       <div className="container">
         <div className="row">
           <div className="col-sm-8">
-            <h3>OUR MENU</h3>
+            <h3>OUR MENU </h3>
             <hr></hr>
               {this.state.menu.map(menu => (
                 <div>
@@ -142,8 +175,8 @@ edit(update){
                   : null }  
                    <hr id="hr"></hr>
                   <div className="total">
-                    <div className="col-sm-6">Order Total</div>
-                    <div className="col-sm-6"> <b>&#x20B9; 512</b></div>
+                    <div className="col-sm-6 text-left">Order Total</div>
+                    <div className="col-sm-6 text-right"> <b>&#x20B9; {this.state.total}</b></div>
                   </div>
 
                   <a href="#myModal" data-toggle="modal"><button className="conbtn btn btn-success">

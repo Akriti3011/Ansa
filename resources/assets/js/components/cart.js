@@ -6,23 +6,26 @@ class Cart extends Component {
   var added = this.props.added;
   
   return(  
-      <div>
-          <div className=" text-left">
-          <div className="col-sm-2">
-              <button onClick={() =>this.props.editItem(added)} className="delbtn btn-xs btn-danger" >
-              <i className="glyphicon glyphicon-minus"></i></button>
+        <div>
+          <div className="row">
+            <div className="col-sm-1 noPadding">
+              <a onClick={() =>this.props.editItem(added)} className="delbtn" >
+              <i className="glyphicon glyphicon-trash"></i></a>
             </div>
-            <div className="col-sm-2">
-              <button onClick={() =>this.props.delItem(added)} className="delbtn btn-xs btn-danger" >
-              <i className="glyphicon glyphicon-trash"></i></button>
+            <div className="col-sm-1 noPadding">
+              <input className="qty" value={added.quantity} disabled/>
             </div>
-            <div className="col-sm-5">
-              <h5>{added.quantity} &ensp; &times; {added.name}</h5>
+            <div className="col-sm-1 noPadding">
+              <a onClick={() =>this.props.delItem(added)} className="plusbtn" >
+              <i className="glyphicon glyphicon-plus"></i></a>
             </div>
-            <div className="col-sm-3">
+            <div className="col-sm-6 text-left">
+              <h5>{added.name}</h5>
+            </div>
+            <div className="col-sm-3 text-left">
               <h5>&#x20B9; {added.amount} </h5>
             </div>
-          </div>
+          </div>  
         </div> 
   )
 }
