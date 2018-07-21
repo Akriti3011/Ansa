@@ -71,16 +71,16 @@ class Order extends Component {
   });
 }
  
-// delItem(update){
-//    let added = localStorage.getItem('cart');
-//    let index = null;
-//    index = added.findIndex((arr => arr.id == update.id));
+delItem(update){
+   let added = localStorage.getItem('cart');
+   let index = null;
+   index = added.findIndex((arr => arr.id == update.id));
 
-//    added.remove(index);
-//    console.log(added);
+   added.remove(index);
+   console.log(added);
 
 
-// } 
+} 
  
    
   render() {
