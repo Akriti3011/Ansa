@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 
 class Cart extends Component {
- 
+ delItem(update){
+   let look = JSON.parse(localStorage.getItem('cart'));
+   var obj = look.findIndex(function(obj){
+      return obj.id==update.id;
+    });
+
+   look.splice(obj, 1); 
+   localStorage.setItem('cart', JSON.stringify(look));
+  
+} 
+
  render(){
   var added = this.props.added;
   
