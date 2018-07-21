@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 
 class Cart extends Component {
- delItem(update){
-   let look = JSON.parse(localStorage.getItem('cart'));
-   var obj = look.findIndex(function(obj){
-      return obj.id==update.id;
-    });
+//  delItem(update){
+//    let look = JSON.parse(localStorage.getItem('cart'));
+//    var obj = look.findIndex(function(obj){
+//       return obj.id==update.id;
+//     });
 
-   look.splice(obj, 1); 
-   localStorage.setItem('cart', JSON.stringify(look));
+//    look.splice(obj, 1); 
+//    localStorage.setItem('cart', JSON.stringify(look));
+//    this.setState({
+//     added: look,
+//   });
   
-} 
+// } 
 
  render(){
   var added = this.props.added;
@@ -19,7 +22,7 @@ class Cart extends Component {
       <div>
           <div className=" text-left">
             <div className="col-sm-2">
-              <button onClick={() =>this.delItem(added)} className="delbtn btn-xs btn-danger" >
+              <button onClick={() =>this.props.delItem(added)} className="delbtn btn-xs btn-danger" >
               <i className="glyphicon glyphicon-trash"></i></button>
             </div>
             <div className="col-sm-7">

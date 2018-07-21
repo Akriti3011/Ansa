@@ -18,7 +18,7 @@ class Order extends Component {
   }
   
   componentDidMount() {
-    localStorage.setItem('cart', JSON.stringify(added));
+    let added = JSON.parse(localStorage.getItem('cart'));
     this.setState({
     added: added,
   });
@@ -74,7 +74,20 @@ class Order extends Component {
   });
 }
  
-
+delete(update){
+   let added = JSON.parse(localStorage.getItem('cart'));
+   var obj = added.findIndex(function(obj){
+      return obj.id==update.id;
+    });
+    
+   added.splice(obj, 1); 
+   localStorage.setItem('cart', JSON.stringify(added));
+   console.log(added);
+   this.setState({
+    added: added,
+  });
+  
+} 
  
 
   render() {
@@ -90,7 +103,7 @@ class Order extends Component {
                 <div>
                   <div className="row">
                     <div className="col-sm-10">
-                      <Menu menu={menu} id={menu.id}/>
+                      <Menu menu={menu} />
                     </div>
                     <div className="col-sm-2">
                       <button className="addbtn btn btn-sm btn-primary" onClick={
@@ -107,7 +120,7 @@ class Order extends Component {
                   <div className="cart">
                     {this.state.added.map(added => (
                       <div>
-                        <Cart added={added} />
+                        <Cart added={added} delItem={this.delete} />
                       </div>
                     ))}
                   </div>  

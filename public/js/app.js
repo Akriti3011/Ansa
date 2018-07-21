@@ -53862,7 +53862,7 @@ var Order = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      localStorage.setItem('cart', JSON.stringify(added));
+      var added = JSON.parse(localStorage.getItem('cart'));
       this.setState({
         added: added
       });
@@ -53914,6 +53914,21 @@ var Order = function (_Component) {
       });
     }
   }, {
+    key: 'delete',
+    value: function _delete(update) {
+      var added = JSON.parse(localStorage.getItem('cart'));
+      var obj = added.findIndex(function (obj) {
+        return obj.id == update.id;
+      });
+
+      added.splice(obj, 1);
+      localStorage.setItem('cart', JSON.stringify(added));
+      console.log(added);
+      this.setState({
+        added: added
+      });
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this3 = this;
@@ -53943,7 +53958,7 @@ var Order = function (_Component) {
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'col-sm-10' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu, id: menu.id })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__menu__["a" /* default */], { menu: menu })
                   ),
                   __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
@@ -53979,7 +53994,7 @@ var Order = function (_Component) {
                   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added, delItem: _this3.delete })
                   );
                 })
               ),
@@ -54055,60 +54070,64 @@ var Cart = function (_Component) {
   }
 
   _createClass(Cart, [{
-    key: 'delItem',
-    value: function delItem(update) {
-      var look = JSON.parse(localStorage.getItem('cart'));
-      var obj = look.findIndex(function (obj) {
-        return obj.id == update.id;
-      });
+    key: "render",
 
-      look.splice(obj, 1);
-      localStorage.setItem('cart', JSON.stringify(look));
-    }
-  }, {
-    key: 'render',
+    //  delItem(update){
+    //    let look = JSON.parse(localStorage.getItem('cart'));
+    //    var obj = look.findIndex(function(obj){
+    //       return obj.id==update.id;
+    //     });
+
+    //    look.splice(obj, 1); 
+    //    localStorage.setItem('cart', JSON.stringify(look));
+    //    this.setState({
+    //     added: look,
+    //   });
+
+    // } 
+
     value: function render() {
       var _this2 = this;
 
       var added = this.props.added;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        'div',
+        "div",
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          'div',
-          { className: ' text-left' },
+          "div",
+          { className: " text-left" },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'col-sm-2' },
+            "div",
+            { className: "col-sm-2" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'button',
+              "button",
               { onClick: function onClick() {
-                  return _this2.delItem(added);
-                }, className: 'delbtn btn-xs btn-danger' },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'glyphicon glyphicon-trash' })
+                  return _this2.props.delItem(added);
+                }, className: "delbtn btn-xs btn-danger" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-trash" })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'col-sm-7' },
+            "div",
+            { className: "col-sm-7" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h5',
+              "h5",
               null,
               added.quantity,
-              ' \u2002 \xD7 \u2002 ',
+              " \u2002 \xD7 \u2002 ",
               added.name
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            'div',
-            { className: 'col-sm-3' },
+            "div",
+            { className: "col-sm-3" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              'h5',
+              "h5",
               null,
-              '\u20B9 ',
+              "\u20B9 ",
               added.amount,
-              ' '
+              " "
             )
           )
         )
