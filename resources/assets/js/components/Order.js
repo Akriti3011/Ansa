@@ -15,13 +15,12 @@ class Order extends Component {
         added:[],
         
     }
+    this.delete = this.delete.bind(this);
   }
   
   componentDidMount() {
     let added = JSON.parse(localStorage.getItem('cart'));
-    this.setState({
-    added: added,
-  });
+    
     /* fetch API in action */
     fetch('/api/menu')
         .then(response => {
@@ -32,7 +31,9 @@ class Order extends Component {
             this.setState({ menu });
             //console.log(menu);
         });
-        
+       this.setState({
+    added: added,
+  }); 
   }
 
   addItem(menu) {
@@ -82,7 +83,7 @@ delete(update){
     
    added.splice(obj, 1); 
    localStorage.setItem('cart', JSON.stringify(added));
-   console.log(added);
+   console.log(this.state.menu);
    this.setState({
     added: added,
   });
