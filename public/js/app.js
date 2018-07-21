@@ -53855,6 +53855,7 @@ var Order = function (_Component) {
 
     };
     _this.delete = _this.delete.bind(_this);
+    _this.edit = _this.edit.bind(_this);
     return _this;
   }
 
@@ -53863,7 +53864,7 @@ var Order = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      var added = JSON.parse(localStorage.getItem('cart'));
+      var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
@@ -53880,15 +53881,6 @@ var Order = function (_Component) {
   }, {
     key: 'addItem',
     value: function addItem(menu) {
-      //   const added = this.state.added.slice(0);
-      //   added.push(menu);
-      //   this.setState({
-      //   added: added,
-      // });
-      //localStorage.setItem('added', added.concat(added));
-      // console.log(menu.id);
-      //let cart;
-      //localStorage.clear();
       var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
       var index = null;
@@ -53900,7 +53892,7 @@ var Order = function (_Component) {
       index = added.findIndex(function (arr) {
         return arr.id == menu.id;
       });
-      //console.log(index);
+
       if (obj) {
         added[index].quantity = added[index].quantity + 1;
         added[index].amount = added[index].quantity * menu.price;
@@ -53925,7 +53917,28 @@ var Order = function (_Component) {
 
       added.splice(obj, 1);
       localStorage.setItem('cart', JSON.stringify(added));
-      console.log(this.state.menu);
+      this.setState({
+        added: added
+      });
+    }
+  }, {
+    key: 'edit',
+    value: function edit(update) {
+      var added = JSON.parse(localStorage.getItem('cart'));
+      var obj = added.findIndex(function (obj) {
+        return obj.id == update.id;
+      });
+      var price = null;
+
+      if (added[obj].quantity > 1) {
+        price = added[obj].amount / added[obj].quantity;
+        added[obj].quantity = added[obj].quantity - 1;
+        added[obj].amount = added[obj].quantity * price;
+      } else {
+        added.splice(obj, 1);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(added));
       this.setState({
         added: added
       });
@@ -53989,17 +54002,17 @@ var Order = function (_Component) {
                 'MY ORDER'
               ),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', null),
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              this.state.added ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
                 { className: 'cart' },
                 this.state.added.map(function (added) {
                   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added, delItem: _this3.delete })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added, delItem: _this3.delete, editItem: _this3.edit })
                   );
                 })
-              ),
+              ) : null,
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('hr', { id: 'hr' }),
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'div',
@@ -54073,21 +54086,6 @@ var Cart = function (_Component) {
 
   _createClass(Cart, [{
     key: "render",
-
-    //  delItem(update){
-    //    let look = JSON.parse(localStorage.getItem('cart'));
-    //    var obj = look.findIndex(function(obj){
-    //       return obj.id==update.id;
-    //     });
-
-    //    look.splice(obj, 1); 
-    //    localStorage.setItem('cart', JSON.stringify(look));
-    //    this.setState({
-    //     added: look,
-    //   });
-
-    // } 
-
     value: function render() {
       var _this2 = this;
 
@@ -54105,6 +54103,17 @@ var Cart = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "button",
               { onClick: function onClick() {
+                  return _this2.props.editItem(added);
+                }, className: "delbtn btn-xs btn-danger" },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-minus" })
+            )
+          ),
+          __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+            "div",
+            { className: "col-sm-2" },
+            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+              "button",
+              { onClick: function onClick() {
                   return _this2.props.delItem(added);
                 }, className: "delbtn btn-xs btn-danger" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-trash" })
@@ -54112,12 +54121,12 @@ var Cart = function (_Component) {
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
             "div",
-            { className: "col-sm-7" },
+            { className: "col-sm-5" },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "h5",
               null,
               added.quantity,
-              " \u2002 \xD7 \u2002 ",
+              " \u2002 \xD7 ",
               added.name
             )
           ),
