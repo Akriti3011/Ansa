@@ -53854,6 +53854,7 @@ var Order = function (_Component) {
       added: []
 
     };
+    _this.delete = _this.delete.bind(_this);
     return _this;
   }
 
@@ -53863,9 +53864,7 @@ var Order = function (_Component) {
       var _this2 = this;
 
       var added = JSON.parse(localStorage.getItem('cart'));
-      this.setState({
-        added: added
-      });
+
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
         return response.json();
@@ -53873,6 +53872,9 @@ var Order = function (_Component) {
         //Fetched product is stored in the state
         _this2.setState({ menu: menu });
         //console.log(menu);
+      });
+      this.setState({
+        added: added
       });
     }
   }, {
@@ -53923,7 +53925,7 @@ var Order = function (_Component) {
 
       added.splice(obj, 1);
       localStorage.setItem('cart', JSON.stringify(added));
-      console.log(added);
+      console.log(this.state.menu);
       this.setState({
         added: added
       });
