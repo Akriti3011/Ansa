@@ -53862,6 +53862,10 @@ var Order = function (_Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
+      localStorage.setItem('cart', JSON.stringify(added));
+      this.setState({
+        added: added
+      });
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
         return response.json();
@@ -53905,22 +53909,9 @@ var Order = function (_Component) {
       }
 
       localStorage.setItem('cart', JSON.stringify(added));
-      console.log(added);
       this.setState({
         added: added
       });
-    }
-  }, {
-    key: 'delItem',
-    value: function delItem(update) {
-      var added = localStorage.getItem('cart');
-      var index = null;
-      index = added.findIndex(function (arr) {
-        return arr.id == update.id;
-      });
-
-      added.remove(index);
-      console.log(added);
     }
   }, {
     key: 'render',
@@ -54064,49 +54055,60 @@ var Cart = function (_Component) {
   }
 
   _createClass(Cart, [{
-    key: "render",
+    key: 'delItem',
+    value: function delItem(update) {
+      var look = JSON.parse(localStorage.getItem('cart'));
+      var obj = look.findIndex(function (obj) {
+        return obj.id == update.id;
+      });
+
+      look.splice(obj, 1);
+      localStorage.setItem('cart', JSON.stringify(look));
+    }
+  }, {
+    key: 'render',
     value: function render() {
       var _this2 = this;
 
       var added = this.props.added;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-        "div",
+        'div',
         null,
         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-          "div",
-          { className: " text-left" },
+          'div',
+          { className: ' text-left' },
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "col-sm-2" },
+            'div',
+            { className: 'col-sm-2' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "button",
+              'button',
               { onClick: function onClick() {
                   return _this2.delItem(added);
-                }, className: "delbtn btn-xs btn-danger" },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-trash" })
+                }, className: 'delbtn btn-xs btn-danger' },
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'glyphicon glyphicon-trash' })
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "col-sm-7" },
+            'div',
+            { className: 'col-sm-7' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "h5",
+              'h5',
               null,
               added.quantity,
-              " \u2002 \xD7 \u2002 ",
+              ' \u2002 \xD7 \u2002 ',
               added.name
             )
           ),
           __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-            "div",
-            { className: "col-sm-3" },
+            'div',
+            { className: 'col-sm-3' },
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-              "h5",
+              'h5',
               null,
-              "\u20B9 ",
+              '\u20B9 ',
               added.amount,
-              " "
+              ' '
             )
           )
         )

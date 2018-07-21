@@ -18,6 +18,10 @@ class Order extends Component {
   }
   
   componentDidMount() {
+    localStorage.setItem('cart', JSON.stringify(added));
+    this.setState({
+    added: added,
+  });
     /* fetch API in action */
     fetch('/api/menu')
         .then(response => {
@@ -65,24 +69,14 @@ class Order extends Component {
 
     
     localStorage.setItem('cart', JSON.stringify(added));
-    console.log(added);
     this.setState({
     added: added,
   });
 }
  
-delItem(update){
-   let added = localStorage.getItem('cart');
-   let index = null;
-   index = added.findIndex((arr => arr.id == update.id));
 
-   added.remove(index);
-   console.log(added);
-
-
-} 
  
-   
+
   render() {
     
     return (
