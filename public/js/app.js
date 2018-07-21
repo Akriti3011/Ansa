@@ -53881,15 +53881,6 @@ var Order = function (_Component) {
   }, {
     key: 'addItem',
     value: function addItem(menu) {
-      //   const added = this.state.added.slice(0);
-      //   added.push(menu);
-      //   this.setState({
-      //   added: added,
-      // });
-      //localStorage.setItem('added', added.concat(added));
-      // console.log(menu.id);
-      //let cart;
-      //localStorage.clear();
       var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
 
       var index = null;
@@ -53901,7 +53892,7 @@ var Order = function (_Component) {
       index = added.findIndex(function (arr) {
         return arr.id == menu.id;
       });
-      //console.log(index);
+
       if (obj) {
         added[index].quantity = added[index].quantity + 1;
         added[index].amount = added[index].quantity * menu.price;
@@ -53926,7 +53917,6 @@ var Order = function (_Component) {
 
       added.splice(obj, 1);
       localStorage.setItem('cart', JSON.stringify(added));
-      console.log(this.state.menu);
       this.setState({
         added: added
       });
@@ -53949,7 +53939,6 @@ var Order = function (_Component) {
       }
 
       localStorage.setItem('cart', JSON.stringify(added));
-      console.log(this.state.menu);
       this.setState({
         added: added
       });
@@ -54097,21 +54086,6 @@ var Cart = function (_Component) {
 
   _createClass(Cart, [{
     key: "render",
-
-    //  delItem(update){
-    //    let look = JSON.parse(localStorage.getItem('cart'));
-    //    var obj = look.findIndex(function(obj){
-    //       return obj.id==update.id;
-    //     });
-
-    //    look.splice(obj, 1); 
-    //    localStorage.setItem('cart', JSON.stringify(look));
-    //    this.setState({
-    //     added: look,
-    //   });
-
-    // } 
-
     value: function render() {
       var _this2 = this;
 

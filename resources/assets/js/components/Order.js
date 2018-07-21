@@ -38,15 +38,6 @@ class Order extends Component {
   }
 
   addItem(menu) {
-  //   const added = this.state.added.slice(0);
-  //   added.push(menu);
-  //   this.setState({
-  //   added: added,
-  // });
-    //localStorage.setItem('added', added.concat(added));
-    // console.log(menu.id);
-    //let cart;
-    //localStorage.clear();
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     
     let index = null;
@@ -56,7 +47,7 @@ class Order extends Component {
     });
 
     index = added.findIndex((arr => arr.id == menu.id));
-    //console.log(index);
+
      if(obj){
       added[index].quantity = added[index].quantity + 1;
       added[index].amount = added[index].quantity * menu.price ; 
@@ -67,9 +58,7 @@ class Order extends Component {
       added.push(temp);
      
     }
- 
 
-    
     localStorage.setItem('cart', JSON.stringify(added));
     this.setState({
     added: added,
@@ -84,7 +73,6 @@ delete(update){
    
    added.splice(obj, 1); 
    localStorage.setItem('cart', JSON.stringify(added));
-   console.log(this.state.menu);
    this.setState({
     added: added,
   });
@@ -109,7 +97,6 @@ edit(update){
    }
    
    localStorage.setItem('cart', JSON.stringify(added));
-   console.log(this.state.menu);
    this.setState({
     added: added,
   });
