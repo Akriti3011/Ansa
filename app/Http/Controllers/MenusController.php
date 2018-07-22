@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\menu;
+use App\Menu;
 
 use Illuminate\Http\Request;
 
