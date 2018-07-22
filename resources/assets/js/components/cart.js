@@ -9,14 +9,14 @@ class Cart extends Component {
         <div>
           <div className="row">
             <div className="col-sm-1 noPadding">
-              <a onClick={() =>this.props.editItem(added)} className="delbtn" >
+              <a onClick={() =>this.props.delItem(added)} className="delbtn" >
               <i className="glyphicon glyphicon-trash"></i></a>
             </div>
             <div className="col-sm-1 noPadding">
               <input className="qty" value={added.quantity} disabled/>
             </div>
             <div className="col-sm-1 noPadding">
-              <a onClick={() =>this.props.delItem(added)} className="plusbtn" >
+              <a onClick={() =>this.props.editItem(added)} className="plusbtn" >
               <i className="glyphicon glyphicon-plus"></i></a>
             </div>
             <div className="col-sm-6 text-left">
