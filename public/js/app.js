@@ -53866,11 +53866,7 @@ var Order = function (_Component) {
       var _this2 = this;
 
       var added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-      var total = 0;
-      for (var i = 0; i < added.length; i++) {
-        total = total + parseInt(added[i].amount);
-      }
-      //console.log(total);
+      var total = localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0;
 
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
@@ -53878,13 +53874,11 @@ var Order = function (_Component) {
       }).then(function (menu) {
         //Fetched product is stored in the state
         _this2.setState({ menu: menu });
-        //console.log(menu);
       });
       this.setState({
         added: added,
         total: total
       });
-      //console.log(this.total);
     }
   }, {
     key: 'addItem',
@@ -53906,41 +53900,14 @@ var Order = function (_Component) {
         added[index].amount = added[index].quantity * menu.price;
       } else {
 
-        var temp = { "id": menu.id, "name": menu.name, "amount": menu.price, "quantity": 1 };
+        var temp = { "id": menu.id, "name": menu.name, "amount": parseInt(menu.price), "quantity": 1 };
         added.push(temp);
       }
-      var total = 0;
-      for (var i = 0; i < added.length; i++) {
-        total = total + parseInt(added[i].amount);
-      }
+      var total = localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0;
+      total = parseInt(total) + parseInt(menu.price);
 
       localStorage.setItem('cart', JSON.stringify(added));
-      localStorage.setItem('total', total);
-      this.setState({
-        added: added,
-        total: total
-      });
-    }
-  }, {
-    key: 'delete',
-    value: function _delete(update) {
-      var added = JSON.parse(localStorage.getItem('cart'));
-      var obj = added.findIndex(function (obj) {
-        return obj.id == update.id;
-      });
-      var price = null;
-
-      price = added[obj].amount / added[obj].quantity;
-      added[obj].quantity = added[obj].quantity + 1;
-      added[obj].amount = added[obj].quantity * price;
-
-      localStorage.setItem('cart', JSON.stringify(added));
-      localStorage.setItem('total', total);
-      var total = 0;
-      for (var i = 0; i < added.length; i++) {
-        total = total + parseInt(added[i].amount);
-      }
-
+      localStorage.setItem('total', JSON.stringify(total));
       this.setState({
         added: added,
         total: total
@@ -53948,27 +53915,50 @@ var Order = function (_Component) {
     }
   }, {
     key: 'edit',
-    value: function edit(update) {
+    value: function edit(item) {
       var added = JSON.parse(localStorage.getItem('cart'));
       var obj = added.findIndex(function (obj) {
-        return obj.id == update.id;
+        return obj.id == item.id;
       });
-      var price = null;
+      var price = 0;
 
+      price = added[obj].amount / added[obj].quantity;
+      added[obj].quantity = added[obj].quantity + 1;
+      added[obj].amount = added[obj].quantity * price;
+
+      var total = JSON.parse(localStorage.getItem('total'));
+      total = parseInt(total) + price;
+
+      localStorage.setItem('cart', JSON.stringify(added));
+      localStorage.setItem('total', JSON.stringify(total));
+
+      this.setState({
+        added: added,
+        total: total
+      });
+    }
+  }, {
+    key: 'delete',
+    value: function _delete(item) {
+      var added = JSON.parse(localStorage.getItem('cart'));
+      var obj = added.findIndex(function (obj) {
+        return obj.id == item.id;
+      });
+      var price = 0;
+      price = added[obj].amount / added[obj].quantity;
       if (added[obj].quantity > 1) {
-        price = added[obj].amount / added[obj].quantity;
         added[obj].quantity = added[obj].quantity - 1;
         added[obj].amount = added[obj].quantity * price;
       } else {
         added.splice(obj, 1);
       }
 
+      var total = JSON.parse(localStorage.getItem('total'));
+      total = parseInt(total) - price;
+      console.log(total);
+
       localStorage.setItem('cart', JSON.stringify(added));
-      localStorage.setItem('total', total);
-      var total = 0;
-      for (var i = 0; i < added.length; i++) {
-        total = total + parseInt(added[i].amount);
-      }
+      localStorage.setItem('total', JSON.stringify(total));
 
       this.setState({
         added: added,
@@ -54136,7 +54126,7 @@ var Cart = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
               { onClick: function onClick() {
-                  return _this2.props.editItem(added);
+                  return _this2.props.delItem(added);
                 }, className: "delbtn" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-trash" })
             )
@@ -54152,7 +54142,7 @@ var Cart = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               "a",
               { onClick: function onClick() {
-                  return _this2.props.delItem(added);
+                  return _this2.props.editItem(added);
                 }, className: "plusbtn" },
               __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "glyphicon glyphicon-plus" })
             )
