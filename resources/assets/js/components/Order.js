@@ -5,7 +5,6 @@ import Cart from './cart';
  
 /* Main Component */
 class Order extends Component {
- 
   constructor() {
    
     super();
@@ -13,13 +12,11 @@ class Order extends Component {
     this.state = {
         menu: [],
         added:[],
-        total:0,
-        
+        total:0,   
     }
     this.delete = this.delete.bind(this);
     this.edit = this.edit.bind(this);
   }
-  
   componentDidMount() {
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     let total = 0;
@@ -27,7 +24,6 @@ class Order extends Component {
       total = total + parseInt(added[i].amount); 
     }
     //console.log(total);
-    
     /* fetch API in action */
     fetch('/api/menu')
         .then(response => {
@@ -44,7 +40,6 @@ class Order extends Component {
   }); 
 //console.log(this.total);
   }
-
   addItem(menu) {
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     
@@ -53,24 +48,20 @@ class Order extends Component {
     var obj = added.find(function(obj){
       return obj.id==menu.id;
     });
-
     index = added.findIndex((arr => arr.id == menu.id));
 
      if(obj){
       added[index].quantity = added[index].quantity + 1;
       added[index].amount = added[index].quantity * menu.price ; 
     }
-    else{
-      
+    else{ 
       var temp ={"id":menu.id,"name":menu.name,"amount":menu.price, "quantity":1};
-      added.push(temp);
-     
+      added.push(temp); 
     }
     let total = 0;
     for(var i=0; i<added.length;i++){
       total = total + parseInt(added[i].amount); 
     }
-    
     localStorage.setItem('cart', JSON.stringify(added));
     localStorage.setItem('total', total);
     this.setState({
@@ -78,31 +69,25 @@ class Order extends Component {
     total:total,
   });
 }
- 
 delete(update){
    let added = JSON.parse(localStorage.getItem('cart'));
    var obj = added.findIndex(function(obj){
       return obj.id==update.id;
     });
    let price = null;
-
      price = added[obj].amount / added[obj].quantity;
      added[obj].quantity = added[obj].quantity+1;
      added[obj].amount = added[obj].quantity * price;
-
-   localStorage.setItem('cart', JSON.stringify(added));
-localStorage.setItem('total', total);
-   let total = 0;
-    for(var i=0; i<added.length;i++){
+     localStorage.setItem('cart', JSON.stringify(added));
+     localStorage.setItem('total', total);
+     let total = 0;
+     for(var i=0; i<added.length;i++){
       total = total + parseInt(added[i].amount); 
-    }
-    
-   this.setState({
+     }
+  this.setState({
     added: added,
     total:total,
-  });
-  
-  
+  }); 
 } 
 
 edit(update){
@@ -196,3 +181,4 @@ export default Order;
 if (document.getElementById('pick')) {
     ReactDOM.render(<Order />, document.getElementById('pick'));
 }
+

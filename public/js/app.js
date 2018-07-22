@@ -53853,7 +53853,6 @@ var Order = function (_Component) {
       menu: [],
       added: [],
       total: 0
-
     };
     _this.delete = _this.delete.bind(_this);
     _this.edit = _this.edit.bind(_this);
@@ -53871,7 +53870,6 @@ var Order = function (_Component) {
         total = total + parseInt(added[i].amount);
       }
       //console.log(total);
-
       /* fetch API in action */
       fetch('/api/menu').then(function (response) {
         return response.json();
@@ -53896,7 +53894,6 @@ var Order = function (_Component) {
       var obj = added.find(function (obj) {
         return obj.id == menu.id;
       });
-
       index = added.findIndex(function (arr) {
         return arr.id == menu.id;
       });
@@ -53905,7 +53902,6 @@ var Order = function (_Component) {
         added[index].quantity = added[index].quantity + 1;
         added[index].amount = added[index].quantity * menu.price;
       } else {
-
         var temp = { "id": menu.id, "name": menu.name, "amount": menu.price, "quantity": 1 };
         added.push(temp);
       }
@@ -53913,7 +53909,6 @@ var Order = function (_Component) {
       for (var i = 0; i < added.length; i++) {
         total = total + parseInt(added[i].amount);
       }
-
       localStorage.setItem('cart', JSON.stringify(added));
       localStorage.setItem('total', total);
       this.setState({
@@ -53929,18 +53924,15 @@ var Order = function (_Component) {
         return obj.id == update.id;
       });
       var price = null;
-
       price = added[obj].amount / added[obj].quantity;
       added[obj].quantity = added[obj].quantity + 1;
       added[obj].amount = added[obj].quantity * price;
-
       localStorage.setItem('cart', JSON.stringify(added));
       localStorage.setItem('total', total);
       var total = 0;
       for (var i = 0; i < added.length; i++) {
         total = total + parseInt(added[i].amount);
       }
-
       this.setState({
         added: added,
         total: total
