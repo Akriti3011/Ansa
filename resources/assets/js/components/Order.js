@@ -2,33 +2,37 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Menu from './menu';
 import Cart from './cart';
+import OpenModal from './openModal';
 import {Modal, Button, FormGroup, Col, ControlLabel, Form, FormControl} from 'react-bootstrap';
 /* Main Component */
 class Order extends Component {
  
-  constructor() {
+  constructor(props) {
    
-    super();
+    super(props);
     //Initialize the state in the constructor
     this.state = {
         menu: [],
         added:[],
         total:0,
         show:false,
-        value: ''
+        customerDetails:[],
+        
         
     }
     this.delete = this.delete.bind(this);
     this.edit = this.edit.bind(this);
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    this.orderFun = this.orderFun.bind(this);
+     
+
+    
 
   }
   
   componentDidMount() {
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-    console.log(added);
     let total = localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0;
     
     /* fetch API in action */
@@ -52,10 +56,7 @@ handleClose() {
   handleShow() {
     this.setState({ show: true });
   }
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
+    
   addItem(menu) {
     let added = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
     
@@ -142,11 +143,18 @@ delete(item){
   });
   
 } 
- 
+
+
+
+ orderFun(y) {
+    
+    console.log("check":y);
+      
+    }
 
   render() {
-    
-    return (
+
+     return (
             
       <div className="container">
         <div className="row">
@@ -194,60 +202,12 @@ delete(item){
         </div>
         <Modal show={this.state.show} onHide={this.handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>customer Details</Modal.Title>
+            <Modal.Title>Customer Details</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-          <Form horizontal>
-          <FormGroup controlId="formName">
-    <Col componentClass={ControlLabel} sm={2}>
-      Name
-    </Col>
-    <Col sm={10}>
-      <FormControl type="text" placeholder="Name" />
-    </Col>
-  </FormGroup>
-  <FormGroup controlId="formContact">
-    <Col componentClass={ControlLabel} sm={2}>
-      Contact
-    </Col>
-    <Col sm={10}>
-      <FormControl type="number" placeholder="Contact" />
-    </Col>
-  </FormGroup>
-  <FormGroup controlId="formEmail">
-    <Col componentClass={ControlLabel} sm={2}>
-      Email
-    </Col>
-    <Col sm={10}>
-      <FormControl type="email" placeholder="Email" />
-    </Col>
-  </FormGroup>
-  <FormGroup controlId="formPincode">
-    <Col componentClass={ControlLabel} sm={2}>
-      Pincode
-    </Col>
-    <Col sm={10}>
-      <FormControl type="number" placeholder="Pincode" />
-    </Col>
-  </FormGroup>
-  <FormGroup controlId="formAddress">
-    <Col componentClass={ControlLabel} sm={2}>
-      Address
-    </Col>
-    <Col sm={10}>
-      <FormControl type="text" placeholder="Address" />
-    </Col>
-  </FormGroup>
-  <FormGroup>
-    <Col smOffset={2} sm={10}>
-      <Button bsStyle="success" type="submit">Order Now</Button>
-    </Col>
-  </FormGroup>
-</Form>
-           
+          <OpenModal orderNow={this.orderFun} />
           </Modal.Body>
-          
-        </Modal>
+        </Modal> 
       </div>
     
     );
