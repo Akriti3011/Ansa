@@ -11,6 +11,11 @@ html,body {
 html {
   font-size: 100%;
 }
+.form-control{
+  margin-bottom: 0 !important;
+}
+
+.form-control .modal input{height: 35px;}
 
 .delbtn{
  line-height: 40px;
