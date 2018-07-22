@@ -1,7 +1,4 @@
-
-
-
-  <!doctype html>
+<!doctype html>
 <html lang="{{ app()->getLocale() }}">
     <head>
         <meta charset="utf-8">
@@ -26,12 +23,7 @@
     <link rel="stylesheet" href="{{ asset('css/flexslider.css')}}">
 
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-          
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600' rel='stylesheet' type='text/css'>
@@ -56,10 +48,10 @@ font-family: 'Limelight', cursive;">ANSA</a>
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="/" class="smoothScroll">Home</a></li>
-          <li><a href="#feature" class="smoothScroll">About</a></li>
-        <li><a href="#menu" class="smoothScroll">Menu</a></li>
+          <li><a href="/#feature" class="smoothScroll">About</a></li>
+        <li><a href="/#menu" class="smoothScroll">Menu</a></li>
         <li><a href="/order" class="smoothScroll">Order Online</a></li>
-        <li><a href="#contact" class="smoothScroll">Contact</a></li>
+        <li><a href="/#contact" class="smoothScroll">Contact</a></li>
       </ul>
     </div>
 
