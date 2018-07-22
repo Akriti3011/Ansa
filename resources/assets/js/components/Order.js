@@ -146,10 +146,30 @@ delete(item){
 
 
 
- orderFun(y) {
+ orderFun(customer) {
     
-    console.log("check":y);
-      
+    customer.contact = Number(customer.contact);
+    customer.pincode = Number(customer.pincode);
+    let added = localStorage.getItem('cart');
+    let total = JSON.parse(localStorage.getItem('total'));
+    let data = [];
+    data.push(added,total,customer);
+    console.log("Customer",data);
+        // fetch( 'api/..../', {
+        //         method:'post',   
+        //         headers: {
+        //             'Accept': 'application/json',
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body: JSON.stringify(customer)
+        //     }
+        // )
+
+        // .then(response => {
+        //     return response.json();
+        // })
+        // .then( customer => {this.setState({customerDetails:customer})})
+
     }
 
   render() {

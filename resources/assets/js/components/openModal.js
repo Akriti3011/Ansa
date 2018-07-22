@@ -37,7 +37,7 @@ constructor(props) {
      *to the parent component. The current state is passed 
      *as a param
      */
-     console.log(this.state.customer);
+     //console.log(this.state.customer);
     this.props.orderNow(this.state.customer);
   }
 
