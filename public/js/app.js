@@ -62658,7 +62658,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Name',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Name', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('name', e);
                 } })
@@ -62675,7 +62675,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Contact',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Contact', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('contact', e);
                 } })
@@ -62692,7 +62692,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'email', placeholder: 'Email',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'email', placeholder: 'Email', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('email', e);
                 } })
@@ -62709,7 +62709,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Pincode',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Pincode', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('pincode', e);
                 } })
@@ -62726,7 +62726,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Address',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Address', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('address', e);
                 } })
