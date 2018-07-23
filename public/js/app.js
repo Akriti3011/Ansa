@@ -62297,7 +62297,6 @@ var Order = function (_Component) {
 
       var total = JSON.parse(localStorage.getItem('total'));
       total = parseInt(total) - price;
-      console.log(total);
 
       localStorage.setItem('cart', JSON.stringify(added));
       localStorage.setItem('total', JSON.stringify(total));
@@ -62310,32 +62309,42 @@ var Order = function (_Component) {
   }, {
     key: 'orderFun',
     value: function orderFun(customer) {
+      var _this3 = this;
 
       customer.contact = Number(customer.contact);
       customer.pincode = Number(customer.pincode);
-      var added = localStorage.getItem('cart');
+      var added = JSON.parse(localStorage.getItem('cart'));
       var total = JSON.parse(localStorage.getItem('total'));
       var data = [];
       data.push(added, total, customer);
       console.log("Customer", data);
-      // fetch( 'api/..../', {
-      //         method:'post',   
-      //         headers: {
-      //             'Accept': 'application/json',
-      //             'Content-Type': 'application/json'
-      //         },
-      //         body: JSON.stringify(data)
-      //     }
-      // )
-      // .then(response => {
-      //     return response.json();
-      // })
-      // .then( customer => {this.setState({customerDetails:customer})})
+
+      fetch('/api/cart', {
+        method: 'post',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      }).then(function (response) {
+        return response.json();
+      }).then(function (responseJsonData) {
+        console.log(responseJsonData.success);
+        if (responseJsonData.success) {
+          alert("Order Placed Successfully!");
+          _this3.setState({ customerDetails: customer });
+        } else {
+          alert('Error!! Try Again!');
+        }
+      }).catch(function (err) {
+        console.log(err);
+        return err;
+      });
     }
   }, {
     key: 'render',
     value: function render() {
-      var _this3 = this;
+      var _this4 = this;
 
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
         'div',
@@ -62370,7 +62379,7 @@ var Order = function (_Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                       'button',
                       { className: 'addbtn btn btn-sm btn-primary', onClick: function onClick() {
-                          return _this3.addItem(menu);
+                          return _this4.addItem(menu);
                         } },
                       'ADD'
                     )
@@ -62398,7 +62407,7 @@ var Order = function (_Component) {
                   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     null,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added, delItem: _this3.delete, editItem: _this3.edit })
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__cart__["a" /* default */], { added: added, delItem: _this4.delete, editItem: _this4.edit })
                   );
                 })
               ) : null,
@@ -62649,7 +62658,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Name',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Name', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('name', e);
                 } })
@@ -62666,7 +62675,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Contact',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Contact', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('contact', e);
                 } })
@@ -62683,7 +62692,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'email', placeholder: 'Email',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'email', placeholder: 'Email', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('email', e);
                 } })
@@ -62700,7 +62709,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Pincode',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'number', placeholder: 'Pincode', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('pincode', e);
                 } })
@@ -62717,7 +62726,7 @@ var openModal = function (_Component) {
             __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
               __WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["b" /* Col */],
               { sm: 10 },
-              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Address',
+              __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_bootstrap__["e" /* FormControl */], { type: 'text', placeholder: 'Address', required: true,
                 onChange: function onChange(e) {
                   return _this2.handleInput('address', e);
                 } })

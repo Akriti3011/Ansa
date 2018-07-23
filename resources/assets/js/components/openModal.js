@@ -53,7 +53,7 @@ constructor(props) {
       Name
     </Col>
     <Col sm={10}>
-      <FormControl type="text"  placeholder="Name" 
+      <FormControl type="text"  placeholder="Name" required={true} 
       onChange={(e)=>this.handleInput('name',e)} />
     </Col>
   </FormGroup>
@@ -62,7 +62,7 @@ constructor(props) {
       Contact
     </Col>
     <Col sm={10}>
-      <FormControl type="number" placeholder="Contact"
+      <FormControl type="number" placeholder="Contact" required={true}
        onChange={(e)=>this.handleInput('contact',e)} />
     </Col>
   </FormGroup>
@@ -71,7 +71,7 @@ constructor(props) {
       Email
     </Col>
     <Col sm={10}>
-      <FormControl type="email" placeholder="Email"
+      <FormControl type="email" placeholder="Email" required={true}
        onChange={(e)=>this.handleInput('email',e)} />
     </Col>
   </FormGroup>
@@ -80,7 +80,7 @@ constructor(props) {
       Pincode
     </Col>
     <Col sm={10}>
-      <FormControl type="number" placeholder="Pincode"
+      <FormControl type="number" placeholder="Pincode" required={true}
       onChange={(e)=>this.handleInput('pincode',e)}  />
     </Col>
   </FormGroup>
@@ -89,7 +89,7 @@ constructor(props) {
       Address
     </Col>
     <Col sm={10}>
-      <FormControl type="text"  placeholder="Address"
+      <FormControl type="text"  placeholder="Address" required={true}
       onChange={(e)=>this.handleInput('address',e)} />
     </Col>
   </FormGroup>

@@ -132,7 +132,6 @@ delete(item){
 
    let total = JSON.parse(localStorage.getItem('total'));
     total = parseInt(total)-price;
-    console.log(total);
 
    localStorage.setItem('cart', JSON.stringify(added));
    localStorage.setItem('total', JSON.stringify(total));
@@ -150,24 +149,35 @@ delete(item){
     
     customer.contact = Number(customer.contact);
     customer.pincode = Number(customer.pincode);
-    let added = localStorage.getItem('cart');
+    let added = JSON.parse(localStorage.getItem('cart'));
     let total = JSON.parse(localStorage.getItem('total'));
     let data = [];
     data.push(added,total,customer);
     console.log("Customer",data);
-        // fetch( 'api/..../', {
-        //         method:'post',   
-        //         headers: {
-        //             'Accept': 'application/json',
-        //             'Content-Type': 'application/json'
-        //         },
-        //         body: JSON.stringify(data)
-        //     }
-        // )
-        // .then(response => {
-        //     return response.json();
-        // })
-        // .then( customer => {this.setState({customerDetails:customer})})
+    
+        fetch( '/api/cart', {
+                method:'post',   
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            }
+        )
+        .then((response)=>response.json())
+           .then((responseJsonData) =>{
+      console.log(responseJsonData.success);
+       if(responseJsonData.success){
+        alert("Order Placed Successfully!");
+        this.setState({customerDetails:customer});
+    }
+    else{
+      alert('Error!! Try Again!');
+    }
+    }).catch(function(err) {
+          console.log(err);
+          return err;
+        });
 
     }
 
