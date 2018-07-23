@@ -62164,7 +62164,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-/* Main Component */
 
 var Order = function (_Component) {
   _inherits(Order, _Component);
@@ -62172,7 +62171,6 @@ var Order = function (_Component) {
   function Order(props) {
     _classCallCheck(this, Order);
 
-    //Initialize the state in the constructor
     var _this = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this, props));
 
     _this.state = {
@@ -62220,7 +62218,12 @@ var Order = function (_Component) {
   }, {
     key: 'handleShow',
     value: function handleShow() {
-      this.setState({ show: true });
+      var total = localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0;
+      if (total === 0) {
+        alert("Your cart is empty!");
+      } else {
+        this.setState({ show: true });
+      }
     }
   }, {
     key: 'addItem',
@@ -62317,7 +62320,7 @@ var Order = function (_Component) {
       var total = JSON.parse(localStorage.getItem('total'));
       var data = [];
       data.push(added, total, customer);
-      console.log("Customer", data);
+      //console.log("Customer",data);
 
       fetch('/api/cart', {
         method: 'post',
@@ -62329,10 +62332,12 @@ var Order = function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJsonData) {
-        console.log(responseJsonData.success);
+        //console.log(responseJsonData);
         if (responseJsonData.success) {
           alert("Order Placed Successfully!");
           _this3.setState({ customerDetails: customer });
+          localStorage.clear();
+          _this3.setState({ added: null, show: false });
         } else {
           alert('Error!! Try Again!');
         }
@@ -62592,7 +62597,6 @@ var openModal = function (_Component) {
   function openModal(props) {
     _classCallCheck(this, openModal);
 
-    /* Initialize the state. */
     var _this = _possibleConstructorReturn(this, (openModal.__proto__ || Object.getPrototypeOf(openModal)).call(this, props));
 
     _this.state = {
@@ -62609,31 +62613,17 @@ var openModal = function (_Component) {
     return _this;
   }
 
-  /* This method dynamically accepts inputs and stores it in the state */
-
-
   _createClass(openModal, [{
     key: 'handleInput',
     value: function handleInput(key, e) {
-
-      /*Duplicating and updating the state */
       var state = Object.assign({}, this.state.customer);
       state[key] = e.target.value;
       this.setState({ customer: state });
     }
-
-    /* This method is invoked when submit button is pressed */
-
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(e) {
-      //preventDefault prevents page reload   
       e.preventDefault();
-      /*A call back to the onAdd props. The control is handed over
-       *to the parent component. The current state is passed 
-       *as a param
-       */
-      //console.log(this.state.customer);
       this.props.orderNow(this.state.customer);
     }
   }, {

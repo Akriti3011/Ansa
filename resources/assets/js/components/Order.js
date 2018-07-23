@@ -4,20 +4,18 @@ import Menu from './menu';
 import Cart from './cart';
 import OpenModal from './openModal';
 import {Modal, Button, FormGroup, Col, ControlLabel, Form, FormControl} from 'react-bootstrap';
-/* Main Component */
+
 class Order extends Component {
  
   constructor(props) {
    
     super(props);
-    //Initialize the state in the constructor
     this.state = {
         menu: [],
         added:[],
         total:0,
         show:false,
-        customerDetails:[],
-        
+        customerDetails:[],    
         
     }
     this.delete = this.delete.bind(this);
@@ -25,9 +23,6 @@ class Order extends Component {
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
     this.orderFun = this.orderFun.bind(this);
-     
-
-    
 
   }
   
@@ -54,7 +49,14 @@ handleClose() {
   }
 
   handleShow() {
-    this.setState({ show: true });
+    let total = localStorage.getItem('total') ? JSON.parse(localStorage.getItem('total')) : 0;
+    if(total === 0){
+      alert("Your cart is empty!");
+    }
+    else{
+     this.setState({ show: true });
+    }
+
   }
     
   addItem(menu) {
@@ -143,8 +145,6 @@ delete(item){
   
 } 
 
-
-
  orderFun(customer) {
     
     customer.contact = Number(customer.contact);
@@ -153,7 +153,7 @@ delete(item){
     let total = JSON.parse(localStorage.getItem('total'));
     let data = [];
     data.push(added,total,customer);
-    console.log("Customer",data);
+    //console.log("Customer",data);
     
         fetch( '/api/cart', {
                 method:'post',   
@@ -166,10 +166,12 @@ delete(item){
         )
         .then((response)=>response.json())
            .then((responseJsonData) =>{
-      console.log(responseJsonData.success);
+      //console.log(responseJsonData);
        if(responseJsonData.success){
         alert("Order Placed Successfully!");
         this.setState({customerDetails:customer});
+        localStorage.clear();
+        this.setState({added:null, show:false});
     }
     else{
       alert('Error!! Try Again!');
@@ -178,7 +180,6 @@ delete(item){
           console.log(err);
           return err;
         });
-
     }
 
   render() {

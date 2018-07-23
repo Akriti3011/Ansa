@@ -5,7 +5,6 @@ class openModal extends Component {
 
 constructor(props) {
     super(props);
-       /* Initialize the state. */
        this.state = {
           customer:{
           name:'',
@@ -19,34 +18,20 @@ constructor(props) {
     this.handleInput = this.handleInput.bind(this);
   }
   
-  /* This method dynamically accepts inputs and stores it in the state */
   handleInput(key, e) {
-    
-    /*Duplicating and updating the state */
     var state = Object.assign({}, this.state.customer); 
     state[key] = e.target.value;
     this.setState({customer: state });
-
   }
 
- /* This method is invoked when submit button is pressed */
-  handleSubmit(e) {
-    //preventDefault prevents page reload   
+  handleSubmit(e) { 
     e.preventDefault();
-    /*A call back to the onAdd props. The control is handed over
-     *to the parent component. The current state is passed 
-     *as a param
-     */
-     //console.log(this.state.customer);
     this.props.orderNow(this.state.customer);
   }
 
  render(){
-  
-  
   return(  
         <div>
-          
           <Form horizontal onSubmit={this.handleSubmit}>
           <FormGroup controlId="formName">
     <Col componentClass={ControlLabel} sm={2}>
@@ -99,8 +84,6 @@ constructor(props) {
     </Col>
   </FormGroup>
 </Form>
-           
-           
         </div> 
   )
 }
