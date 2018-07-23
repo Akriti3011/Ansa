@@ -161,10 +161,9 @@ delete(item){
         //             'Accept': 'application/json',
         //             'Content-Type': 'application/json'
         //         },
-        //         body: JSON.stringify(customer)
+        //         body: JSON.stringify(data)
         //     }
         // )
-
         // .then(response => {
         //     return response.json();
         // })
