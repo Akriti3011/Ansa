@@ -22,3 +22,6 @@ Route::get('menu', 'MenusController@menu');
 Route::get('menu/{menu}', 'MenusController@menuItem');
 
 Route::post('cart', 'CartController@addOrderDetails');
+
+Route::post('addMenu', 'MenusController@addMenu');
+
