@@ -22,7 +22,10 @@ Route::get('menu', 'MenusController@menu');
 Route::get('menu/{menu}', 'MenusController@menuItem');
 
 Route::post('cart', 'CartController@addOrderDetails');
+Route::post('login', 'AuthenticationController@login');
+
 
 Route::group(['middleware' => 'auth:api'], function(){
 Route::post('addMenu', 'MenusController@addMenu');
+Route::get('logout', 'AuthenticationController@logout');
 });
