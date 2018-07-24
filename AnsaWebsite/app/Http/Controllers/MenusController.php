@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 use App\Menu;
 
 use Illuminate\Http\Request;
+use App\http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Image;
+use DateTime;
 
 class MenusController extends Controller
 {
