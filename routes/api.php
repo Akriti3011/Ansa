@@ -23,5 +23,6 @@ Route::get('menu/{menu}', 'MenusController@menuItem');
 
 Route::post('cart', 'CartController@addOrderDetails');
 
+Route::group(['middleware' => 'auth:api'], function(){
 Route::post('addMenu', 'MenusController@addMenu');
-
+});
