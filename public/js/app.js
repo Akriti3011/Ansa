@@ -62177,8 +62177,7 @@ var Order = function (_Component) {
       menu: [],
       added: [],
       total: 0,
-      show: false,
-      customerDetails: []
+      show: false
 
     };
     _this.delete = _this.delete.bind(_this);
@@ -62320,8 +62319,6 @@ var Order = function (_Component) {
       var total = JSON.parse(localStorage.getItem('total'));
       var data = [];
       data.push(added, total, customer);
-      //console.log("Customer",data);
-
       fetch('/api/cart', {
         method: 'post',
         headers: {
@@ -62332,12 +62329,10 @@ var Order = function (_Component) {
       }).then(function (response) {
         return response.json();
       }).then(function (responseJsonData) {
-        //console.log(responseJsonData);
         if (responseJsonData.success) {
           alert("Order Placed Successfully!");
-          _this3.setState({ customerDetails: customer });
           localStorage.clear();
-          _this3.setState({ added: null, show: false });
+          _this3.setState({ added: [], total: 0, show: false });
         } else {
           alert('Error!! Try Again!');
         }
