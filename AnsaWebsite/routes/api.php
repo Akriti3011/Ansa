@@ -23,6 +23,7 @@ Route::get('menu/{menu}', 'MenusController@menuItem');
 
 Route::post('cart', 'CartController@addOrderDetails');
 Route::post('login', 'AuthenticationController@login');
+Route::post('register', 'AuthenticationController@register');
 
 
 Route::group(['middleware' => 'auth:api'], function(){
