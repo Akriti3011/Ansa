@@ -15,7 +15,7 @@ class Order extends Component {
         added:[],
         total:0,
         show:false,
-        customerDetails:[],    
+            
         
     }
     this.delete = this.delete.bind(this);
@@ -153,8 +153,6 @@ delete(item){
     let total = JSON.parse(localStorage.getItem('total'));
     let data = [];
     data.push(added,total,customer);
-    //console.log("Customer",data);
-    
         fetch( '/api/cart', {
                 method:'post',   
                 headers: {
@@ -166,12 +164,10 @@ delete(item){
         )
         .then((response)=>response.json())
            .then((responseJsonData) =>{
-      //console.log(responseJsonData);
        if(responseJsonData.success){
         alert("Order Placed Successfully!");
-        this.setState({customerDetails:customer});
         localStorage.clear();
-        this.setState({added:null, show:false});
+        this.setState({added:[], total:0, show:false});
     }
     else{
       alert('Error!! Try Again!');
