@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   fullWidthButton: {
-    backgroundColor: '#FF5252',
+    backgroundColor: '#8BC34A',
     width: (Platform.OS === 'android') ? 220: 250,
     height:45,
     flexDirection: 'row',

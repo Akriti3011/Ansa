@@ -11,43 +11,48 @@ import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import { Divider } from 'react-native-elements';
+import Constants  from '../components/constants';
+const ipAddr = Constants.ipAddr;
 export default class MenuItem extends Component {
 
     render() {
-        var menu = this.props.menu;
-         console.log("gvhj",menu);
-        
+        var menu = this.props.menu;        
         return (
             
             <View style={styles.container}>
                 <View style={styles.iconContainer}>
-                   
+                  <Image source={{ uri: ipAddr+"/"+menu.imagePath}} style={{ height: 80, width:80 }} /> 
                 </View>
                 <View style={styles.descContainer}>
                   <View style={styles.halfContainer}>
-                <View style={styles.half}>
+                    <View style={styles.half}>
                     <Text style={styles.leadStats}>{menu.name}</Text>
-                </View>
-                <View style={styles.half}>
-                     <Text style={styles.leadStats}>{menu.price}</Text>
-                </View>
-                    
-                </View>
-                <View style={styles.halfContainer}>
-                <View style={styles.half}>
-                 <Text style={styles.leadStats}>{menu.description}</Text>
-                   
-                </View>
-                <View style={styles.half}>
-                   
-                </View>
+                    </View>
+                    <View style={styles.rightHalf}>
+                    <Text style={styles.leadStats}>{menu.price}</Text>
+                    </View>
+                  </View>
+                  <View style={styles.halfContainer}>
+                    <Text style={styles.desc}>{menu.description}</Text>
+                  </View>
+                  <View style={styles.halfContainer}>
+                  <View style={styles.half}></View>
+                   <TouchableOpacity style={styles.crud} onPress={() => this.props.navigation.navigate("Login")}>
+            <Icon name="create" size={20} color={'#455A64'} />
+            
+          </TouchableOpacity> 
+          <TouchableOpacity style={styles.crud} onPress={() => this.props.navigation.navigate("Menu")}>
+            <Icon name="delete" size={20} color={'#FF5252'} />
+            
+          </TouchableOpacity>
+                  </View>
                     
                 </View> 
                 
                 </View>
                 
                     
-            </View>
+      
            
         )
     }
@@ -62,20 +67,33 @@ const styles = StyleSheet.create({
         marginBottom:20,
     },
     iconContainer: {
-        flex:1,
-        alignContent:'center'
+        flex:2,
+        alignContent:'center',
     },
     descContainer: {
-        flex:4,
+        flex:5,
     },
     leadStats:{
-        fontSize:16,
+        fontSize:18,
+        fontWeight:'bold',
+        color:'#455A64',   
+    },
+    desc:{
+       fontSize:16,
+       color:'#607D8B',
     },
     half:{
+        flex:3,
+    },
+    rightHalf:{
         flex:1,
     },
     halfContainer:{
         flexDirection:'row',
-        flex:1
+        flex:1,
+
+    },
+    crud:{
+        flex:1,
     }
 });

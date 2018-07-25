@@ -1,0 +1,350 @@
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  StatusBar,
+  Keyboard,
+  TouchableHighlight,
+  Button,
+  Image,
+  TouchableOpacity,
+  AsyncStorage,
+  Picker
+} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import NavTab from '../components/navTab';
+import { TextField } from 'react-native-material-textfield';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Expo,{ ImagePicker } from 'expo';
+import Constants  from '../components/constants';
+const ipAddr = Constants.ipAddr;
+async function registerPer(){
+  var {statusCameraRoll} = await Expo.Permissions.getAsync(Expo.Permissions.CAMERA_ROLL);
+  var {statusCamera} = await Expo.Permissions.getAsync(Expo.Permissions.CAMERA);
+
+  
+  if(!statusCameraRoll ){
+    var grantCameraRoll = await Expo.Permissions.askAsync(Expo.Permissions.CAMERA_ROLL);
+    //if(grantCameraRoll!== 'granted') alert('Gallery permission not granted!');
+  }
+  if(statusCamera !== 'granted'){
+    grantCamera = await Expo.Permissions.askAsync(Expo.Permissions.CAMERA);
+    //if(grantCamera!== 'granted') alert('Camera permission not granted!');
+  }
+  return;
+}
+
+class AddMenuScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      sendImage:false,
+      imageName:'',
+      imageUri:'',
+      imageType:'',
+      token:'',
+      name:'',
+      price:'',
+      description:'',
+
+
+    };
+  }
+
+  static navigationOptions = {
+    header: null,
+  };
+
+  componentDidMount(){
+    this._loadInitialState().done();
+
+  }
+
+  _loadInitialState = async () => {
+    var userToken = await AsyncStorage.getItem('userToken');
+    if(userToken){
+      
+      this.setState({token:userToken});
+      
+    }
+  }
+
+  componentWillMount(){
+    registerPer();
+  }
+
+
+    _pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      allowsEditing: false,
+      //aspect: [4, 3],
+    });
+
+    if (!result.cancelled) {
+       // ImagePicker saves the taken photo to disk and returns a local URI to it
+      let localUri = result.uri;
+      let filename = localUri.split('/').pop();
+      
+
+
+      // Infer the type of the image
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+      this.setState({
+        imageName:filename,
+        imageUri:localUri,
+        imageType:type,
+        sendImage:true});
+
+    }
+    
+  }
+
+  _captureImage = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      allowsEditing: false,
+      //aspect: [4, 3],
+    });
+
+    if (!result.cancelled) {
+       // ImagePicker saves the taken photo to disk and returns a local URI to it
+      let localUri = result.uri;
+      let filename = localUri.split('/').pop();
+     
+      // Infer the type of the image
+      let match = /\.(\w+)$/.exec(filename);
+      let type = match ? `image/${match[1]}` : `image`;
+      this.setState({
+        imageName:filename,
+        imageUri:localUri,
+        imageType:type,
+      sendImage:true});
+
+    }
+  }
+
+
+  addMenu = ()=>{
+    
+      
+      var imageName = this.state.imageName;
+      var imageUri = this.state.imageUri;
+      var imageType = this.state.imageType;
+      var sendImage = this.state.sendImage;
+      var name = this.state.name;
+      var price = this.state.price;
+      var description = this.state.description;
+      const { navigation } = this.props;
+      const { token } = this.state;
+
+      this.setState({
+     
+      sendImage:false,
+      imageName:'',
+      imageUri:'',
+      imageType:'',
+      token:'',
+      name:'',
+      price:'',
+      description:'',
+
+    });
+      //alert('token'+token);
+
+     var formData = new FormData();
+
+  formData.append('name',name);
+  formData.append('price',price);
+  formData.append('description',description);
+
+
+
+     //alert('Token:'+token);
+     if(sendImage){
+      formData.append('isImage',true);
+      formData.append('Image',{ uri: imageUri, name: imageName, type:imageType });
+     }else{
+      formData.append('isImage',false);
+     }
+     console.log(formData);
+     fetch(ipAddr+'/api/addMenu',{
+      method:"POST",
+      headers:{
+        Accept:'application/json',
+        'Content-Type':'multipart/form-data',
+        Authorization: 'Bearer ' + token,
+      },
+      body:formData
+    }).then((response) => response.json())
+    
+    .then((responseJsonData) =>{
+      //console.log(responseJsonData);
+       if(responseJsonData.success){
+        alert("Item added successfully!");
+        this.props.navigation.navigate('Menu');
+    }
+    else{
+      alert('Unauthorised user!');
+    }
+    }).catch(function(err) {
+          console.log(err);
+          return err;
+        });
+      
+
+   
+  }
+
+  clearImage = ()=>{
+    const {sendImage} = this.state;
+    if(sendImage) {
+      this.setState({sendImage:false});
+      alert('Image Cleared!');
+    }
+    else alert('No Image Selected!');
+  }
+
+  render() {
+       let { sendImage } = this.state;
+      let {name} = this.state;
+      let {price} = this.state;
+      let {description} = this.state;
+      
+
+    return (
+      <View 
+        behavior="padding"
+        enabled
+        style={{ paddingTop: (Platform.OS === 'ios') ? 20 : 0,
+          flex: 1,
+        }}>
+        <View style={styles.navBar}>
+         
+          <Text style={{ color: '#fff', fontSize: 20 }}> Add Menu Item</Text>
+          <TouchableOpacity onPress={ this.addMenu}>
+          <Icon style={styles.navItem} name="check" fontWeight={'bold'} size={36} color={'#fff'} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.body}>
+         <KeyboardAwareScrollView>
+          <View style={styles.inputs}>
+              <TextField
+                label="Item Name"
+                value={name}
+                onChangeText={name => this.setState({ name:name })}
+              />
+               <TextField
+                label="Price"
+                value={price} keyboardType='decimal-pad'
+                onChangeText={price => this.setState({ price:price })}
+              />
+               <TextField
+                label="Description"
+                value={description}
+                onChangeText={description => this.setState({ description:description})}
+              />
+               
+          <View style={styles.imageWrapper}>
+           <TouchableHighlight
+                onPress={this._pickImage}>
+                <Text style={{fontSize:16, color:'#607D8B'}}>Browse</Text>
+              </TouchableHighlight>
+          <TouchableHighlight
+                onPress={this._captureImage}>
+                <Text style={{fontSize:16, color:'#607D8B'}}>Capture</Text>
+              </TouchableHighlight>
+                
+           <Text style={{width:(Platform.OS === 'android') ? 100 : 130,  height: (Platform.OS === 'android') ? 100:130}}>
+           {sendImage  && <Image source={{ uri: imageUri }} style={{ width:(Platform.OS === 'ios') ? 130 : 100, height: (Platform.OS === 'ios') ? 130 : 100 }} />}
+           </Text>
+           <TouchableHighlight
+                onPress={this.clearImage}>
+                <Icon name="clear" size={25} color={'#8BC34A'} />
+              </TouchableHighlight>
+        </View>
+
+            
+          </View>
+          <View style={styles.inputsContainer}>
+              <TouchableHighlight
+                style={styles.fullWidthButton}
+                onPress={ this.addMenu}>
+                <Text style={styles.fullWidthButtonText}>Add Item</Text>
+              </TouchableHighlight>
+            </View>
+           </KeyboardAwareScrollView>
+        </View>
+          <NavTab navigation={this.props.navigation}/>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  navBar: {
+    height: 55,
+    backgroundColor: '#607D8B',
+    elevation: 3,
+    paddingHorizontal: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent:'space-between'
+  },
+  body: {
+    flex: 1,
+    backgroundColor:'#fff'
+  },
+  inputs: {
+    paddingHorizontal: 20,
+  },
+  inputsContainer: {
+    flex: 1,
+    paddingTop:50,
+    alignContent:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  fullWidthButton: {
+    backgroundColor: '#8BC34A',
+    width: (Platform.OS === 'android') ? 220: 250,
+    height:45,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+
+    borderRadius: 5,
+  },
+  fullWidthButtonText: {
+    fontSize: 18,
+    color: 'white',
+  },
+  imageWrapper:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection:'row',
+    paddingTop:10
+  },
+  tabBar:{
+    height:(Platform.OS === 'android') ? 58: 60,
+    paddingHorizontal:20,
+    backgroundColor:'#3F51B5',
+    borderTopWidth:0.5,
+    borderColor:'#e5e5e5',
+    flexDirection:'row',
+    justifyContent:'space-between'
+  },
+  tabText:{
+    color:'#fff',
+    fontSize:11,
+    paddingTop:(Platform.OS === 'android') ?2:4,
+  },
+  tabItem:{
+    alignItems:'center',
+    justifyContent:'center'
+  }
+});
+export default AddMenuScreen;

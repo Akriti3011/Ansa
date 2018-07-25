@@ -73,7 +73,7 @@ class MenuScreen extends React.Component {
           }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      console.log(responseJsonData);
+      //console.log(responseJsonData);
       if(responseJsonData.success){
       var  menus = [];
       responseJsonData.success.forEach(function(item){
@@ -136,7 +136,7 @@ class MenuScreen extends React.Component {
         </View>
           
           <TouchableOpacity style={styles.fix} onPress={() => this.props.navigation.navigate("AddMenu")}>
-            <Icon raised={true} name="add-circle" size={68} color={'#FF5252'} />
+            <Icon raised={true} name="add-circle" size={60} color={'#8BC34A'} />
           </TouchableOpacity> 
         </View>
         

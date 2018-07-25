@@ -23,7 +23,7 @@ export default class NavTab extends Component {
             <Text style={styles.tabText}>Home</Text>
           </TouchableOpacity> 
           <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Menu")}>
-            <Icon name="visibility" size={25} color={'#fff'} />
+            <Icon name="restaurant-menu" size={25} color={'#fff'} />
             <Text style={styles.tabText}>Food Menu</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Profile")}>

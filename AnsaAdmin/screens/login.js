@@ -38,7 +38,7 @@ class LoginScreen extends React.Component {
     var userToken = await AsyncStorage.getItem('userToken');
     if(userToken){
       
-      this.props.navigation.navigate("Profile",userToken);
+      this.props.navigation.navigate("Menu",userToken);
     }
   }
 
@@ -71,7 +71,7 @@ class LoginScreen extends React.Component {
         AsyncStorage.setItem('userToken',responseJsonData.success.token);
         AsyncStorage.setItem('userEmail',responseJsonData.success.user);
       
-        this.props.navigation.navigate("Profile");
+        this.props.navigation.navigate("Menu");
       //alert('Token:'+responseJsonData.success.token);
       //Authorization: 'Bearer ${this.state.token.accessToken}',
     }
@@ -104,7 +104,7 @@ class LoginScreen extends React.Component {
         <KeyboardAwareScrollView>
         <View style={styles.welcomeWrap}>
           
-          <Text style={styles.headText}>ANSA ADMIN</Text>
+          <Text style={styles.headText}>ANSA</Text>
           <Text style={styles.welcomeText}>Welcome Back !</Text>
                   </View>
 
@@ -158,8 +158,10 @@ const styles = StyleSheet.create({
     paddingTop: (Platform.OS === 'android') ? 30 : 50,
   },
   headText:{
-    fontSize:38,
+    fontSize:36,
     paddingTop:20,
+    fontWeight:'bold',
+    color:'#8BC34A',
   },
   welcomeText:{
     fontSize:24,
@@ -174,7 +176,7 @@ const styles = StyleSheet.create({
     paddingTop:50,
   },
   fullWidthButton: {
-    backgroundColor: '#607D8B',
+    backgroundColor: '#8BC34A',
     height:45,
     flexDirection: 'row',
     justifyContent: 'center',
