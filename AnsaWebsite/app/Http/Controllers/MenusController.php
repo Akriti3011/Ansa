@@ -22,6 +22,13 @@ class MenusController extends Controller
         return $menu;
     }
 
+    public function getMenu()
+    {
+        $items= menu::all();
+        return response()->json(['success'=> $items], 200); 
+
+    }
+
     public function addMenu(Request $request)
     {
     	$items = new menu;
@@ -42,6 +49,6 @@ class MenusController extends Controller
             $image = $image->storeAs($directory, $storename ,'local');   
         }
     $items->save();
-    	return response()->json(['success'=> "Menu added"], 200); 
+    	return response()->json(['success'=> $items], 200); 
     } 
 }
