@@ -93,6 +93,7 @@ class AddMenuScreen extends React.Component {
       // Infer the type of the image
       let match = /\.(\w+)$/.exec(filename);
       let type = match ? `image/${match[1]}` : `image`;
+      
       this.setState({
         imageName:filename,
         imageUri:localUri,
@@ -129,7 +130,6 @@ class AddMenuScreen extends React.Component {
 
   addMenu = ()=>{
     
-      
       var imageName = this.state.imageName;
       var imageUri = this.state.imageUri;
       var imageType = this.state.imageType;
@@ -181,7 +181,7 @@ class AddMenuScreen extends React.Component {
     }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      //console.log(responseJsonData);
+      console.log(responseJsonData);
        if(responseJsonData.success){
         alert("Item added successfully!");
         this.props.navigation.navigate('Menu');
@@ -208,6 +208,7 @@ class AddMenuScreen extends React.Component {
   }
 
   render() {
+        let { imageUri } = this.state;
        let { sendImage } = this.state;
       let {name} = this.state;
       let {price} = this.state;
@@ -224,9 +225,6 @@ class AddMenuScreen extends React.Component {
         <View style={styles.navBar}>
          
           <Text style={{ color: '#fff', fontSize: 20 }}> Add Menu Item</Text>
-          <TouchableOpacity onPress={ this.addMenu}>
-          <Icon style={styles.navItem} name="check" fontWeight={'bold'} size={36} color={'#fff'} />
-          </TouchableOpacity>
         </View>
         <View style={styles.body}>
          <KeyboardAwareScrollView>
@@ -238,7 +236,7 @@ class AddMenuScreen extends React.Component {
               />
                <TextField
                 label="Price"
-                value={price} keyboardType='decimal-pad'
+                value={price} keyboardType='numeric'
                 onChangeText={price => this.setState({ price:price })}
               />
                <TextField
@@ -258,7 +256,7 @@ class AddMenuScreen extends React.Component {
               </TouchableHighlight>
                 
            <Text style={{width:(Platform.OS === 'android') ? 100 : 130,  height: (Platform.OS === 'android') ? 100:130}}>
-           {sendImage  && <Image source={{ uri: imageUri }} style={{ width:(Platform.OS === 'ios') ? 130 : 100, height: (Platform.OS === 'ios') ? 130 : 100 }} />}
+           {sendImage  && <Image source={{ uri: imageUri }} style={{ width:(Platform.OS === 'ios') ? 130 : 300, height: (Platform.OS === 'ios') ? 130 : 300 }} />}
            </Text>
            <TouchableHighlight
                 onPress={this.clearImage}>

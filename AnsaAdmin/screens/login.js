@@ -65,11 +65,11 @@ class LoginScreen extends React.Component {
     }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      console.log(responseJsonData);
+      //console.log(responseJsonData);
        if(responseJsonData.success){
         console.log("Logged in!");
         AsyncStorage.setItem('userToken',responseJsonData.success.token);
-        AsyncStorage.setItem('userEmail',responseJsonData.success.user);
+        AsyncStorage.setItem('userEmail',email);
       
         this.props.navigation.navigate("Menu");
       //alert('Token:'+responseJsonData.success.token);
