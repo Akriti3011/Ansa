@@ -43,7 +43,7 @@ class MenusController extends Controller
             $splitName = explode('.', $filename, 2);
             $date = new DateTime("now");
             $strip = $date->format('YmdHis');
-            $path = 'storage'.$directory.$splitName[0].$strip.'.'.$splitName[1];
+            $path = 'storage'.$directory.'/'.$splitName[0].$strip.'.'.$splitName[1];
             $storename = $splitName[0].$strip.'.'.$splitName[1];
             $items->imagePath = $path;
             $image = $image->storeAs($directory, $storename ,'local');   
