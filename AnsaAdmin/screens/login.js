@@ -38,7 +38,7 @@ class LoginScreen extends React.Component {
     var userToken = await AsyncStorage.getItem('userToken');
     if(userToken){
       
-      this.props.navigation.navigate("Menu",userToken);
+      this.props.navigation.navigate("OrderDetail",userToken);
     }
   }
 
@@ -71,7 +71,7 @@ class LoginScreen extends React.Component {
         AsyncStorage.setItem('userToken',responseJsonData.success.token);
         AsyncStorage.setItem('userEmail',email);
       
-        this.props.navigation.navigate("Menu");
+        this.props.navigation.navigate("OrderDetail");
       //alert('Token:'+responseJsonData.success.token);
       //Authorization: 'Bearer ${this.state.token.accessToken}',
     }
