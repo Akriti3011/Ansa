@@ -6,6 +6,8 @@ import LoginScreen from './screens/login';
 import ProfileScreen from './screens/profile';
 import MenuScreen from './screens/menu';
 import AddMenuScreen from './screens/addMenu';
+import OrderScreen from './screens/order';
+import OrderDetailScreen from './screens/orderDetail';
 
 
 const App = createStackNavigator({
@@ -13,7 +15,8 @@ const App = createStackNavigator({
   Profile:{ screen: ProfileScreen},
   Menu:{ screen: MenuScreen},
   AddMenu:{screen:AddMenuScreen},
-
+  Order:{ screen: OrderScreen},
+  OrderDetail:{screen:OrderDetailScreen},
 });
 
 export default App;

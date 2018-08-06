@@ -49,7 +49,8 @@ class MenusController extends Controller
             $image = $image->storeAs($directory, $storename ,'local');   
         }
     $items->save();
-    	return response()->json(['success'=> $filename], 200); 
+
+    	return response()->json(['success'=> 'added'], 200); 
     }
 
 
@@ -58,5 +59,6 @@ class MenusController extends Controller
         $menu->isdeleted = true;
         $menu->save();
         return response()->json(['success'=>'deleted'],200);
+
     } 
 }
