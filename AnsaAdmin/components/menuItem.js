@@ -46,7 +46,6 @@ deleteMenu =(menu)=>{
      token:'',
     });
 
-    
     fetch(ipAddr+'/api/deleteMenu/'+menu.id,{
       method:"POST",
       headers:{

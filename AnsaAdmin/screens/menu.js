@@ -73,7 +73,7 @@ class MenuScreen extends React.Component {
           }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      //console.log(responseJsonData);
+      console.log(responseJsonData);
       if(responseJsonData.success){
       var  menus = [];
       responseJsonData.success.forEach(function(item){
@@ -126,7 +126,7 @@ class MenuScreen extends React.Component {
           />
         }
            data={menus}
-           renderItem={(menu)=> <MenuItem menu={menu.item,this.props.navigation} />}
+           renderItem={(menu)=> <MenuItem navigation={this.props.navigation} menu={menu.item} />}
            keyExtractor={(item)=>item.id.toString()}
            
            />
