@@ -126,7 +126,7 @@ class MenuScreen extends React.Component {
           />
         }
            data={menus}
-           renderItem={(menu)=> <MenuItem menu={menu.item} />}
+           renderItem={(menu)=> <MenuItem menu={menu.item,this.props.navigation} />}
            keyExtractor={(item)=>item.id.toString()}
            
            />

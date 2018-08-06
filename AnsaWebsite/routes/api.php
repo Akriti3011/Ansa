@@ -29,5 +29,6 @@ Route::post('register', 'AuthenticationController@register');
 Route::group(['middleware' => 'auth:api'], function(){
 Route::post('addMenu', 'MenusController@addMenu');
 Route::get('getMenu', 'MenusController@getMenu');
+Route::post('deleteMenu/{menu}', 'MenusController@deleteMenu');
 Route::get('logout', 'AuthenticationController@logout');
 });

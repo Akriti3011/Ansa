@@ -5,7 +5,8 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -14,7 +15,61 @@ import { Divider } from 'react-native-elements';
 import Constants  from '../components/constants';
 const ipAddr = Constants.ipAddr;
 export default class MenuItem extends Component {
+    constructor(props){
+        super(props);
+        this.state={
+            token:'',
+        };
+    }
 
+componentDidMount(){
+    this._loadInitialState().done();
+
+  }
+
+  _loadInitialState = async () => {
+    var userToken = await AsyncStorage.getItem('userToken');
+    if(userToken){
+      
+      this.setState({token:userToken});
+      
+    }
+  }
+
+deleteMenu =(menu)=>{
+
+    const { token } = this.state;
+    //alert(token);
+
+    this.setState({
+     
+     token:'',
+    });
+
+    
+    fetch(ipAddr+'/api/deleteMenu/'+menu.id,{
+      method:"POST",
+      headers:{
+        Accept:'application/json',
+        Authorization: 'Bearer ' + token,
+      },
+    }).then((response) => response.json())
+    
+    .then((responseJsonData) =>{
+      console.log(responseJsonData);
+       if(responseJsonData.success){
+        alert("Item deleted successfully!");
+        this.props.navigation.navigate('Menu');
+    }
+    else{
+      alert('Unauthorised user!');
+    }
+    }).catch(function(err) {
+          console.log(err);
+          return err;
+        });
+      
+}
     render() {
         var menu = this.props.menu;        
         return (
@@ -41,14 +96,13 @@ export default class MenuItem extends Component {
             <Icon name="create" size={20} color={'#455A64'} />
             
           </TouchableOpacity> 
-          <TouchableOpacity style={styles.crud} onPress={() => this.props.navigation.navigate("Menu")}>
+          <TouchableOpacity style={styles.crud} onPress={()=>this.deleteMenu(menu)}>
             <Icon name="delete" size={20} color={'#FF5252'} />
             
           </TouchableOpacity>
                   </View>
                     
                 </View> 
-                
                 </View>
                 
                     
