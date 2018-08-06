@@ -14,7 +14,7 @@ class MenusController extends Controller
 {
     public function menu()
     {
-        return menu::all();
+        return menu::where('isdeleted','=',0)->get();
     }
 
     public function menuItem(menu $menu)
@@ -24,7 +24,7 @@ class MenusController extends Controller
 
     public function getMenu()
     {
-        $items= menu::all();
+        $items=menu::where('isdeleted','=',0)->get();
         return response()->json(['success'=> $items], 200); 
 
     }
@@ -50,5 +50,13 @@ class MenusController extends Controller
         }
     $items->save();
     	return response()->json(['success'=> $filename], 200); 
+    }
+
+
+    public function deleteMenu(Menu $menu)
+    {
+        $menu->isdeleted = true;
+        $menu->save();
+        return response()->json(['success'=>'deleted'],200);
     } 
 }

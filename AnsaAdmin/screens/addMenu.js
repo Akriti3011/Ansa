@@ -152,7 +152,7 @@ class AddMenuScreen extends React.Component {
       description:'',
 
     });
-      //alert('token'+token);
+      console.log(token);
 
      var formData = new FormData();
 
@@ -187,7 +187,7 @@ class AddMenuScreen extends React.Component {
         this.props.navigation.navigate('Menu');
     }
     else{
-      alert('Unauthorised user!');
+     alert('Unauthorised user!');
     }
     }).catch(function(err) {
           console.log(err);
