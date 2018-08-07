@@ -8,6 +8,8 @@ import MenuScreen from './screens/menu';
 import AddMenuScreen from './screens/addMenu';
 import OrderScreen from './screens/order';
 import OrderDetailScreen from './screens/orderDetail';
+import EditMenuScreen from './screens/editMenu';
+
 
 
 const App = createStackNavigator({
@@ -17,6 +19,7 @@ const App = createStackNavigator({
   AddMenu:{screen:AddMenuScreen},
   Order:{ screen: OrderScreen},
   OrderDetail:{screen:OrderDetailScreen},
+  EditMenu:{screen:EditMenuScreen},
 });
 
 export default App;
