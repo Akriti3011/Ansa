@@ -91,7 +91,7 @@ deleteMenu =(menu)=>{
                   </View>
                   <View style={styles.halfContainer}>
                   <View style={styles.half}></View>
-                   <TouchableOpacity style={styles.crud} onPress={() => this.props.navigation.navigate("Login")}>
+                   <TouchableOpacity style={styles.crud} onPress={() => this.props.navigation.navigate("EditMenu", {menu:menu})}>
             <Icon name="create" size={20} color={'#455A64'} />
             
           </TouchableOpacity> 
