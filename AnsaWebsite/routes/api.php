@@ -30,6 +30,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 Route::post('addMenu', 'MenusController@addMenu');
 Route::get('getMenu', 'MenusController@getMenu');
 Route::post('deleteMenu/{menu}', 'MenusController@deleteMenu');
-Route::put('editMenu/{menu}', 'MenusController@editMenu');
+Route::post('editMenu/{menu}', 'MenusController@editMenu');
 Route::get('logout', 'AuthenticationController@logout');
 });

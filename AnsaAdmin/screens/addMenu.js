@@ -50,7 +50,6 @@ class AddMenuScreen extends React.Component {
       price:'',
       description:'',
 
-
     };
   }
 

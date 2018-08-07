@@ -121,7 +121,7 @@ class MenuScreen extends React.Component {
         <FlatList refreshControl={
           <RefreshControl
             refreshing={this.state.refreshing}
-            //onRefresh={this._onRefresh}
+           
             onRefresh={this.fetchMenu}
           />
         }

@@ -40,15 +40,16 @@ async function registerPer(){
 class EditMenuScreen extends React.Component {
   constructor(props) {
     super(props);
+    var menu = this.props.navigation.getParam('menu', '');
     this.state = {
       sendImage:true,
       imageName:'',
-      imageUri:'',
+      imageUri:ipAddr+"/"+menu.imagePath,
       imageType:'',
       token:'',
-      name:'',
-      price:'',
-      description:'',
+      name:menu.name,
+      price:menu.price,
+      description:menu.description,
       newImage:false,
 
 
@@ -61,12 +62,12 @@ class EditMenuScreen extends React.Component {
 
   componentDidMount(){
     this._loadInitialState().done();
-    var menu = this.props.navigation.getParam('menu', '');
-    this.setState({
-        name:menu.name,
-        price:menu.price,
-        description:menu.description,
-        imageUri:ipAddr+"/"+menu.imagePath});
+    //var menu = this.props.navigation.getParam('menu', '');
+    // this.setState({
+    //     name:menu.name,
+    //     price:menu.price,
+    //     description:menu.description,
+    //     imageUri:ipAddr+"/"+menu.imagePath});
   }
 
   _loadInitialState = async () => {
@@ -144,25 +145,36 @@ class EditMenuScreen extends React.Component {
     var description = this.state.description;
     const { navigation } = this.props;
     const { token } = this.state;
-    
-
-    var formData = new FormData();
+    var imageType = this.state.imageType;
+      var imageName = this.state.imageName;
+   
     var menu = this.props.navigation.getParam('menu', '');
     
     if(newImage){
       var imageUri = this.state.imageUri;
-      var imageType = this.state.imageType;
-      var imageName = this.state.imageName;
+      
 
     }
     else{
       var imageUri = menu.imagePath; 
-      var imageType = 'png';
-      var imageName = 'tea'; 
     }
       
-      this.setState({
-      sendImage:true,
+      
+      console.log(token);
+ var formData = new FormData();
+  formData.append('name',name);
+  formData.append('price',price);
+  formData.append('description',description);
+
+     if(sendImage){
+      if(newImage){
+      formData.append('Image',{ uri: imageUri, name: imageName, type:imageType });
+      }
+     }
+
+     console.log(formData);
+     this.setState({
+      sendImage:false,
       imageName:'',
       imageUri:'',
       imageType:'',
@@ -173,21 +185,8 @@ class EditMenuScreen extends React.Component {
       newImage:false,
 
     });
-      console.log(token);
-
-  formData.append('name',name);
-  formData.append('price',price);
-  formData.append('description',description);
-
-     if(sendImage){
-      formData.append('isImage',true);
-      formData.append('Image',{ uri: imageUri, name: imageName, type:imageType });
-     }else{
-      formData.append('isImage',false);
-     }
-     console.log(formData);
      fetch(ipAddr+'/api/editMenu/'+menu.id,{
-      method:"PUT",
+      method:"POST",
       headers:{
         Accept:'application/json',
         'Content-Type':'multipart/form-data',
@@ -197,7 +196,7 @@ class EditMenuScreen extends React.Component {
     }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      console.log(responseJsonData);
+      console.log(responseJsonData.success);
        if(responseJsonData.success){
         alert("Item updated successfully!");
         this.props.navigation.navigate('Menu');
