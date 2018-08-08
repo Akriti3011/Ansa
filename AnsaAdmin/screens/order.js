@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import MenuItem from '../components/menuItem';
+import OrderItem from '../components/orderItem';
 import NavTab from '../components/navTab';
 import { TextField } from 'react-native-material-textfield';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -61,7 +61,7 @@ class OrderScreen extends React.Component {
     alert('fetching...');
     this.setState({refreshing: false});
      
-     fetch(ipAddr+'/api/getMenu',{
+     fetch(ipAddr+'/api/getOrder',{
       method:"GET",
       headers:{
         Accept:'application/json',
@@ -81,7 +81,7 @@ class OrderScreen extends React.Component {
 
       });
 
-
+      console.log(orders);
       this.setState({orders:orders});
         
     }
@@ -122,7 +122,7 @@ class OrderScreen extends React.Component {
           <RefreshControl
             refreshing={this.state.refreshing}
             //onRefresh={this._onRefresh}
-            onRefresh={this.fetchLeads}
+            onRefresh={this.fetchOrder}
           />
         }
            data={orders}

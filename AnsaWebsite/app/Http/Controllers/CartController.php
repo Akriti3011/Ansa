@@ -40,7 +40,7 @@ class CartController extends Controller
     	
     	foreach($cart_items as $cart_item){
     		$order_detail = new Order_detail;
-    		$order_detail->order_no = $unique;
+    		$order_detail->order_no = $order->id;
     		$order_detail->menu_id = $cart_item['id'];
     		$order_detail->quantity = $cart_item['quantity'];
     		$order_detail->amount = $cart_item['amount'];

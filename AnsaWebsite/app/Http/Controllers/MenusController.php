@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Image;
 use DateTime;
 
-class MenusController extends Controller
+class MenusController extends Controller 
 {
     public function menu()
     {

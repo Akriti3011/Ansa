@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Avatar } from 'react-native-material-design';
+//import { Avatar } from 'react-native-material-design';
 import { Divider } from 'react-native-elements';
 import Constants  from '../components/constants';
 const ipAddr = Constants.ipAddr;
@@ -20,16 +20,14 @@ export default class OrderItem extends Component {
         return (
             
             <View style={styles.container}>
-                <View style={styles.iconContainer}>
-                  <Avatar icon="folder" backgroundColor="#8BC34A"/> 
-                </View>
+               
                 <View style={styles.descContainer}>
                   <View style={styles.halfContainer}>
                     <View style={styles.half}>
                     <Text style={styles.leadStats}>{order.order_no}</Text>
                     </View>
                     <View style={styles.rightHalf}>
-                    <Text style={styles.leadStats}>{order.total}</Text>
+                    <Text style={styles.leadStats}>{order.total_amount}</Text>
                     </View>
                   </View>
                 

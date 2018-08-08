@@ -31,5 +31,7 @@ Route::post('addMenu', 'MenusController@addMenu');
 Route::get('getMenu', 'MenusController@getMenu');
 Route::post('deleteMenu/{menu}', 'MenusController@deleteMenu');
 Route::post('editMenu/{menu}', 'MenusController@editMenu');
+Route::get('getOrder', 'OrderController@getOrder');
+Route::get('getOrderDetails/{order}', 'OrderController@getOrderDetails');
 Route::get('logout', 'AuthenticationController@logout');
 });
