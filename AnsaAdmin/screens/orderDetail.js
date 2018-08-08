@@ -28,8 +28,14 @@ class OrderDetailScreen extends React.Component {
 
   constructor(props){
     super(props);
+    var order = this.props.navigation.getParam('orderItem', '');
     this.state = {
-    
+      token:'',
+      refreshing: false,
+      order_details:[],
+      customer_details:'',
+      order_no:order.order_no,
+      total_amount: order.total_amount
     };
     
   }
@@ -38,11 +44,64 @@ class OrderDetailScreen extends React.Component {
     header: null,
   };
 
+
+  componentDidMount(){
+    this._loadInitialState().done();
+    
+  }
+  
+  _loadInitialState = async () => {
+    var userToken = await AsyncStorage.getItem('userToken');
+    
+    this.setState({token:userToken});
+    this.fetchOrderDetails();
+  }
+
+
+  fetchOrderDetails = ()=>{
+    const { token } = this.state;
+    var order = this.props.navigation.getParam('orderItem', '');
+    alert('fetching...');
+    this.setState({refreshing: false});
+     
+     fetch(ipAddr+'/api/getOrderDetails/'+order.id,{
+      method:"GET",
+      headers:{
+        Accept:'application/json',
+        Authorization: 'Bearer ' + token,
+      }
+      
+          }).then((response) => response.json())
+    
+    .then((responseJsonData) =>{
+      if(responseJsonData){
+      var  order_details = [];
+      responseJsonData.order_detail.forEach(function(item){
+        order_details.push(item);
+      });
+      var  customer_details = responseJsonData.customer_detail ;
+      
+      this.setState({
+        order_details:order_details,
+        customer_details:customer_details,
+      });
+        
+    }
+    else{
+      alert('Fetching Order Details Failed!');
+    }
+    });
+
+    
+  }
   
   
   render() {
     
-    // const {orderItem} = this.props.navigation.state.params;
+    let {order_no} = this.state;
+    let {total_amount} = this.state;
+    let {order_details} = this.state;
+    let {customer_details} = this.state;
     return (
       <View 
         behavior="padding"
@@ -51,8 +110,8 @@ class OrderDetailScreen extends React.Component {
           flex: 1,
         }}>
         <View style={styles.navBar}>
-          <Text style={{ color: '#fff', fontSize: 20 }}>2352GFHG</Text>
-           <Text style={{ color: '#fff', fontSize: 20 }}>Total: 250</Text>
+          <Text style={{ color: '#fff', fontSize: 20 }}>{order_no}</Text>
+           <Text style={{ color: '#fff', fontSize: 20 }}>Total:{total_amount}</Text>
         </View>
 
        
@@ -65,8 +124,8 @@ class OrderDetailScreen extends React.Component {
            
                 <Text style={styles.head}>Order Details</Text>
 
-                 <View style={styles.Container}>
-                   <View style={styles.halfContainer}>
+                <View style={styles.Container}>
+                  <View style={styles.halfContainer}>
                     <View style={styles.half}>
                     <Text style={styles.cat}>Item</Text>
                     </View>
@@ -76,37 +135,22 @@ class OrderDetailScreen extends React.Component {
                     <View style={styles.rightHalf}>
                     <Text style={styles.cat}>Amount</Text>
                     </View>
-                  
-                
-                </View>
-                  <View style={styles.halfContainer}>
+                  </View>
+                  {order_details.map(order_detail =>( 
+                  <View style={styles.halfContainer} key={order_detail.id}>
                     <View style={styles.half}>
-                    <Text style={styles.leadStats}>Tea</Text>
+                    <Text style={styles.leadStats}>{order_detail.menu_name}</Text>
                     </View>
                     <View style={styles.rightHalf}>
-                    <Text style={styles.num}>2</Text>
+                    <Text style={styles.num}>{order_detail.quantity}</Text>
                     </View>
                     <View style={styles.rightHalf}>
-                    <Text style={styles.num}>20</Text>
+                    <Text style={styles.num}>{order_detail.amount}</Text>
                     </View>
-                  
-                
+                  </View>
+                 ))}
                 </View>
-                 <View style={styles.halfContainer}>
-                    <View style={styles.half}>
-                    <Text style={styles.leadStats}>Sandwich</Text>
-                    </View>
-                    <View style={styles.rightHalf}>
-                    <Text style={styles.num}>2</Text>
-                    </View>
-                    <View style={styles.rightHalf}>
-                    <Text style={styles.num}>20</Text>
-                    </View>
-                  
-                
-                </View>
-               
-                </View>
+
                 <Text style={styles.head}>Customer Details</Text>
                  <View style={styles.Container}>
                 <View style={styles.halfContainer}>
@@ -115,11 +159,46 @@ class OrderDetailScreen extends React.Component {
                     <Text style={styles.cat}>Name</Text>
                     </View>
                     <View style={styles.half}>
-                    <Text style={styles.string}>Akriti</Text>
+                    <Text style={styles.string}>{customer_details.name}</Text>
                     </View>
-                  
-                
                 </View>
+                <View style={styles.halfContainer}>
+                    
+                    <View style={styles.rightHalf}>
+                    <Text style={styles.cat}>Contact No</Text>
+                    </View>
+                    <View style={styles.half}>
+                    <Text style={styles.string}>{customer_details.contact}</Text>
+                    </View>
+                </View>
+                <View style={styles.halfContainer}>
+                    
+                    <View style={styles.rightHalf}>
+                    <Text style={styles.cat}>Address</Text>
+                    </View>
+                    <View style={styles.half}>
+                    <Text style={styles.string}>{customer_details.address}</Text>
+                    </View>
+                </View>
+                <View style={styles.halfContainer}>
+                    
+                    <View style={styles.rightHalf}>
+                    <Text style={styles.cat}>Pincode</Text>
+                    </View>
+                    <View style={styles.half}>
+                    <Text style={styles.string}>{customer_details.pincode}</Text>
+                    </View>
+                </View>
+                <View style={styles.halfContainer}>
+                    
+                    <View style={styles.rightHalf}>
+                    <Text style={styles.cat}>Email</Text>
+                    </View>
+                    <View style={styles.half}>
+                    <Text style={styles.string}>{customer_details.email}</Text>
+                    </View>
+                </View>
+
                 </View>
                 
           
