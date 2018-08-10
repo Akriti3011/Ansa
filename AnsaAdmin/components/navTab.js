@@ -18,7 +18,7 @@ export default class NavTab extends Component {
         return (
             
           <View style={styles.tabBar}>
-          <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Login")}>
+          <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Order")}>
             <Icon name="home" size={25} color={'#fff'} />
             <Text style={styles.tabText}>Home</Text>
           </TouchableOpacity> 

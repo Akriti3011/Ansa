@@ -5,7 +5,7 @@ import {
     Text,
     View,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -20,7 +20,9 @@ export default class OrderItem extends Component {
         return (
             
             <View style={styles.container}>
-               
+               <TouchableOpacity>
+            <Icon raised={true} name="bookmark" size={25} color={'#8BC34A'} />
+          </TouchableOpacity>
                 <View style={styles.descContainer}>
                   <View style={styles.halfContainer}>
                     <View style={styles.half}>
