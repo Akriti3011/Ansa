@@ -115,7 +115,6 @@ class RegisterScreen extends React.Component {
         <View style={styles.welcomeWrap}>
           
           <Text style={styles.headText}>ANSA</Text>
-          <Text style={styles.welcomeText}>Welcome Back !</Text>
                   </View>
 
         <View style={styles.inputs}>
@@ -187,7 +186,6 @@ const styles = StyleSheet.create({
   },
   headText:{
     fontSize:36,
-    paddingTop:20,
     fontWeight:'bold',
     color:'#8BC34A',
   },
