@@ -103,6 +103,7 @@ class MenuScreen extends React.Component {
   render() {
     
     let {menus} = this.state;
+    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
     return (
       <View 
         behavior="padding"
@@ -140,7 +141,7 @@ class MenuScreen extends React.Component {
           </TouchableOpacity> 
         </View>
         
-        <NavTab navigation={this.props.navigation}/>
+        <NavTab navigation={this.props.navigation} isSuperAdmin={isSuperAdmin}/>
       </View>
     );
   }

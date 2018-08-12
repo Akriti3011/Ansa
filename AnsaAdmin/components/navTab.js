@@ -6,6 +6,7 @@ import {
     View,
     Image,
     TouchableOpacity,
+    AsyncStorage,
      
   StatusBar,
 } from 'react-native';
@@ -14,7 +15,8 @@ import { StackNavigator } from 'react-navigation';
 
 export default class NavTab extends Component {
     render()
-     { //console.log(this.props);
+     { 
+        
         return (
             
           <View style={styles.tabBar}>
@@ -26,6 +28,12 @@ export default class NavTab extends Component {
             <Icon name="restaurant-menu" size={25} color={'#fff'} />
             <Text style={styles.tabText}>Food Menu</Text>
           </TouchableOpacity>
+          {this.props.isSuperAdmin ? 
+          <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Register")}>
+            <Icon name="account-circle" size={25} color={'#fff'}/>
+            <Text style={styles.tabText}>Register</Text>
+          </TouchableOpacity>
+          : null }
           <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Profile")}>
             <Icon name="account-circle" size={25} color={'#fff'}/>
             <Text style={styles.tabText}>Account</Text>

@@ -212,7 +212,7 @@ class AddMenuScreen extends React.Component {
       let {name} = this.state;
       let {price} = this.state;
       let {description} = this.state;
-      
+      let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
 
     return (
       <View 
@@ -274,7 +274,7 @@ class AddMenuScreen extends React.Component {
             </View>
            </KeyboardAwareScrollView>
         </View>
-          <NavTab navigation={this.props.navigation}/>
+          <NavTab navigation={this.props.navigation} isSuperAdmin={isSuperAdmin}/>
       </View>
     );
   }

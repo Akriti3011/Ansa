@@ -16,13 +16,16 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import Constants  from '../components/constants';
 const ipAddr = Constants.ipAddr;
 
-class LoginScreen extends React.Component {
+class RegisterScreen extends React.Component {
 
   constructor(props){
     super(props);
     this.state = {
+      name:'',
       email:'',
-      password:''
+      password:'',
+      c_password:'',
+      errorMessage:''
     };
   }
 
@@ -31,29 +34,36 @@ class LoginScreen extends React.Component {
   };
 
   componentDidMount(){
-    this._loadInitialState().done();
+    
   }
 
-  _loadInitialState = async () => {
-    var userToken = await AsyncStorage.getItem('userToken');
-    if(userToken){
-      
-      this.props.navigation.navigate("Order",userToken);
+  comparePassword = ()=> {
+    var password = this.state.password;
+    var c_password = this.state.c_password;
+    if(password != c_password){
+      this.setState({errorMessage:'password does not match'});
     }
+    else{
+      this.setState({errorMessage:''});
+    }
+
   }
 
-
-   login = ()=> {
+   register = ()=> {
+    var name = this.state.name;
     var email = this.state.email;
     var password = this.state.password;
-    this.setState({email:'',password:''});
+    var c_password = this.state.c_password;
+    this.setState({email:'',password:'', name:'', c_password:''});
  
      var formData = new FormData();
+     formData.append('name', name);
      formData.append('email',email);
      formData.append('password',password);
+     formData.append('c_password', c_password);
     //var data = {email:email,password:password};
     //console.log("form DATA:",formData);
-     fetch(ipAddr+'/api/login',{
+     fetch(ipAddr+'/api/register',{
       method:"POST",
       headers:{
         Accept:'application/json',
@@ -65,25 +75,16 @@ class LoginScreen extends React.Component {
     }).then((response) => response.json())
     
     .then((responseJsonData) =>{
-      //console.log(responseJsonData);
        if(responseJsonData.success){
-        console.log("Logged in!");
-        AsyncStorage.setItem('userToken',responseJsonData.success.token);
-        AsyncStorage.setItem('userEmail',email);
-        if(email== 'goyaldeepu468@gmail.com'){
-        AsyncStorage.setItem('isSuperAdmin',true);
-      }
-      else{
-        AsyncStorage.setItem('isSuperAdmin',false);
-      }
+        alert("Successfully Registered!");
       
         this.props.navigation.navigate("Order");
-      //alert('Token:'+responseJsonData.success.token);
-      //Authorization: 'Bearer ${this.state.token.accessToken}',
+      
     }
     else{
-      alert('Invalid username or password');
+      alert('Unable to register!!');
     }
+    
     });
       
 
@@ -93,8 +94,11 @@ class LoginScreen extends React.Component {
   
 
   render() {
+    let {name} = this.state;
     let {email} =this.state;
     let {password} = this.state;
+    let {c_password} = this.state;
+    let {errorMessage} = this.state;
     return (
        
     <View behavior="padding"
@@ -103,7 +107,7 @@ class LoginScreen extends React.Component {
           flex: 1,
         }}>
         <View style={styles.navBar}>
-          <Text style={{color:'#fff', fontSize:20}}>Log in</Text>
+          <Text style={{color:'#fff', fontSize:20}}>Register</Text>
         </View>
         
         <View style={styles.body}>
@@ -116,6 +120,13 @@ class LoginScreen extends React.Component {
 
         <View style={styles.inputs}>
         
+         <TextField keyboardType='email-address'
+        label='Name'
+        value={name}
+        onChangeText={ (name) => this.setState({ name })} 
+        
+      />
+
           <TextField keyboardType='email-address'
         label='Email Id'
         value={email}
@@ -123,17 +134,28 @@ class LoginScreen extends React.Component {
         
       />
       
-      <View>
+      
       <TextField secureTextEntry={true}
         label='Password'
         value={password}
         onChangeText={ (password) => this.setState({ password }) }
       />
-      </View>
+      
+
+        <TextField secureTextEntry={true}
+        label='Confirm Password'
+        value={c_password}
+        onChangeText={ (c_password) => this.setState({ c_password }) }
+        onBlur = {this.comparePassword}
+      />
+      
+      {errorMessage ?
+      <Text>{errorMessage}</Text>
+      : null}
      
       <View style={styles.inputsContainer}>
-    <TouchableHighlight style={styles.fullWidthButton} onPress={this.login}>
-        <Text style={styles.fullWidthButtonText}>LOG IN</Text>
+    <TouchableHighlight style={styles.fullWidthButton} onPress={this.register}>
+        <Text style={styles.fullWidthButtonText}>Register</Text>
     </TouchableHighlight>
 </View>
         </View>
@@ -196,4 +218,4 @@ const styles = StyleSheet.create({
    
 });
 
-export default LoginScreen;
+export default RegisterScreen;

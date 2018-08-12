@@ -90,6 +90,7 @@ class ProfileScreen extends React.Component {
   render() {
    const { token } = this.state;
    const { userEmail } = this.state;
+   let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
     return (
       <View 
         behavior="padding"
@@ -117,7 +118,7 @@ class ProfileScreen extends React.Component {
             </View>
         </View>
         </KeyboardAwareScrollView>
-         <NavTab navigation={this.props.navigation}/>
+         <NavTab navigation={this.props.navigation} isSuperAdmin={isSuperAdmin}/>
       </View>
     );
   }
