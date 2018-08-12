@@ -70,6 +70,12 @@ class LoginScreen extends React.Component {
         console.log("Logged in!");
         AsyncStorage.setItem('userToken',responseJsonData.success.token);
         AsyncStorage.setItem('userEmail',email);
+        if(email== 'goyaldeepu468@gmail.com'){
+        AsyncStorage.setItem('isSuperAdmin',true);
+      }
+      else{
+        AsyncStorage.setItem('isSuperAdmin',false);
+      }
       
         this.props.navigation.navigate("Order");
       //alert('Token:'+responseJsonData.success.token);

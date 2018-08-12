@@ -103,6 +103,7 @@ class OrderScreen extends React.Component {
   render() {
     
     let {orders} = this.state;
+    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
     return (
       <View 
         behavior="padding"
@@ -134,7 +135,7 @@ class OrderScreen extends React.Component {
            
         </View>
         
-        <NavTab navigation={this.props.navigation}/>
+        <NavTab navigation={this.props.navigation} isSuperAdmin={isSuperAdmin}/>
       </View>
     );
   }

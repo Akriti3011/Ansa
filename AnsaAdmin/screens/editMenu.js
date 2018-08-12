@@ -226,6 +226,7 @@ class EditMenuScreen extends React.Component {
     let {description} = this.state;    
     let {sendImage} = this.state;
     let {imageUri} = this.state;
+    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
 
     return (
       <View 
@@ -287,7 +288,7 @@ class EditMenuScreen extends React.Component {
             </View>
            </KeyboardAwareScrollView>
         </View>
-          <NavTab navigation={this.props.navigation}/>
+          <NavTab navigation={this.props.navigation} isSuperAdmin={isSuperAdmin}/>
       </View>
     );
   }
