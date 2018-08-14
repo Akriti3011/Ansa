@@ -28,7 +28,7 @@ export default class NavTab extends Component {
             <Icon name="restaurant-menu" size={25} color={'#fff'} />
             <Text style={styles.tabText}>Food Menu</Text>
           </TouchableOpacity>
-          {this.props.isSuperAdmin ? 
+          {this.props.isSuperAdmin == 'Yes' ? 
           <TouchableOpacity style={styles.tabItem} onPress={() => this.props.navigation.navigate("Register")}>
             <Icon name="account-circle" size={25} color={'#fff'}/>
             <Text style={styles.tabText}>Register</Text>

@@ -49,6 +49,7 @@ class AddMenuScreen extends React.Component {
       name:'',
       price:'',
       description:'',
+      isSuperAdmin:''
 
     };
   }
@@ -64,9 +65,10 @@ class AddMenuScreen extends React.Component {
 
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
     if(userToken){
       
-      this.setState({token:userToken});
+      this.setState({token:userToken, isSuperAdmin:isSuperAdmin});
       
     }
   }
@@ -212,7 +214,7 @@ class AddMenuScreen extends React.Component {
       let {name} = this.state;
       let {price} = this.state;
       let {description} = this.state;
-      let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+      let {isSuperAdmin} = this.state;
 
     return (
       <View 

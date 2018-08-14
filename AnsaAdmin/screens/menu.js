@@ -31,7 +31,8 @@ class MenuScreen extends React.Component {
     this.state = {
       token:'',
      refreshing: false,
-      menus:[]
+      menus:[],
+      isSuperAdmin:''
     };
     
   }
@@ -48,8 +49,8 @@ class MenuScreen extends React.Component {
 
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
-    
-    this.setState({token:userToken});
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
+    this.setState({token:userToken, isSuperAdmin:isSuperAdmin});
     this.fetchMenu();
   }
 
@@ -103,7 +104,7 @@ class MenuScreen extends React.Component {
   render() {
     
     let {menus} = this.state;
-    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+    let {isSuperAdmin} = this.state;
     return (
       <View 
         behavior="padding"
