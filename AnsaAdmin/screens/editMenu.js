@@ -51,6 +51,7 @@ class EditMenuScreen extends React.Component {
       price:menu.price,
       description:menu.description,
       newImage:false,
+      isSuperAdmin:''
 
 
     };
@@ -72,10 +73,10 @@ class EditMenuScreen extends React.Component {
 
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
-    
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
     if(userToken){
       
-      this.setState({token:userToken});
+      this.setState({token:userToken, isSuperAdmin:isSuperAdmin});
       
     }
   }
@@ -226,7 +227,7 @@ class EditMenuScreen extends React.Component {
     let {description} = this.state;    
     let {sendImage} = this.state;
     let {imageUri} = this.state;
-    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+    let {isSuperAdmin} = this.state;
 
     return (
       <View 

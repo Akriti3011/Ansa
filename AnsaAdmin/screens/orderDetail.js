@@ -35,7 +35,8 @@ class OrderDetailScreen extends React.Component {
       order_details:[],
       customer_details:'',
       order_no:order.order_no,
-      total_amount: order.total_amount
+      total_amount: order.total_amount,
+      isSuperAdmin : ''
     };
     
   }
@@ -52,7 +53,7 @@ class OrderDetailScreen extends React.Component {
   
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
-    
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
     this.setState({token:userToken});
     this.fetchOrderDetails();
   }
@@ -102,7 +103,7 @@ class OrderDetailScreen extends React.Component {
     let {total_amount} = this.state;
     let {order_details} = this.state;
     let {customer_details} = this.state;
-    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+    let {isSuperAdmin} = this.state;
     return (
       <View 
         behavior="padding"

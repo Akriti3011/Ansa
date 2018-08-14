@@ -31,7 +31,8 @@ class OrderScreen extends React.Component {
     this.state = {
       token:'',
       refreshing: false,
-      orders:[]
+      orders:[],
+      isSuperAdmin:''
     };
     
   }
@@ -48,8 +49,8 @@ class OrderScreen extends React.Component {
 
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
-    
-    this.setState({token:userToken});
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
+    this.setState({token:userToken, isSuperAdmin:isSuperAdmin});
     this.fetchOrder();
   }
 
@@ -81,7 +82,6 @@ class OrderScreen extends React.Component {
 
       });
 
-      console.log(orders);
       this.setState({orders:orders});
         
     }
@@ -103,7 +103,7 @@ class OrderScreen extends React.Component {
   render() {
     
     let {orders} = this.state;
-    let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+    let {isSuperAdmin} = this.state;
     return (
       <View 
         behavior="padding"

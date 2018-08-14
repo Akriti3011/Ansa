@@ -29,6 +29,7 @@ class ProfileScreen extends React.Component {
     this.state = {
       token:'',
        userEmail:'',
+       isSuperAdmin:''
     };
   }
   static navigationOptions = {
@@ -43,7 +44,8 @@ class ProfileScreen extends React.Component {
   _loadInitialState = async () => {
     var userToken = await AsyncStorage.getItem('userToken');
     var userEmail = await AsyncStorage.getItem('userEmail');
-    this.setState({token:userToken,userEmail:userEmail});
+    var isSuperAdmin = await AsyncStorage.getItem('isSuperAdmin');
+    this.setState({token:userToken,userEmail:userEmail, isSuperAdmin:isSuperAdmin});
   }
 
  
@@ -90,7 +92,7 @@ class ProfileScreen extends React.Component {
   render() {
    const { token } = this.state;
    const { userEmail } = this.state;
-   let isSuperAdmin = AsyncStorage.getItem('isSuperAdmin');
+   let {isSuperAdmin} = this.state;
     return (
       <View 
         behavior="padding"
